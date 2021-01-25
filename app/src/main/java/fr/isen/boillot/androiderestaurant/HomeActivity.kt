@@ -22,7 +22,7 @@ class HomeActivity : AppCompatActivity() {
             val intent = Intent(this@HomeActivity, ListActivity::class.java)
             optionSelected = findViewById(R.id.button_starter)
             val message = optionSelected.text.toString()
-            intent.putExtra("message_key", message)
+            intent.putExtra("category_key", message)
             startActivity(intent)
         }
         binding.buttonMain.setOnClickListener {
@@ -30,7 +30,7 @@ class HomeActivity : AppCompatActivity() {
             val intent = Intent(this@HomeActivity, ListActivity::class.java)
             optionSelected = findViewById(R.id.button_main)
             val message = optionSelected.text.toString()
-            intent.putExtra("message_key", message)
+            intent.putExtra("category_key", message)
             startActivity(intent)
         }
         binding.buttonDessert.setOnClickListener {
