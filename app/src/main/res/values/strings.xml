@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">AndroidERestaurant</string>
+    <string name="catch_phrase">Une petite faim ?</string>
+    <string name="welcome_phrase">Bienvenue chez </string>
+    <string name="title_app">Pick &amp; Go</string>
+    <string name="button_starter">Entrées</string>
+    <string name="button_main">Plats</string>
+    <string name="button_dessert">Desserts</string>
 </resources>
