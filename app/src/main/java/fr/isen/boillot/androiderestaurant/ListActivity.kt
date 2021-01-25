@@ -38,7 +38,7 @@ class ListActivity : AppCompatActivity() {
         if (message.equals("Desserts")) {
             listPlats = resources.getStringArray(R.array.dessert_name).toList()
         }
-        binding.recyclerView.adapter = listPlats?.let { RecyclerAdapter(it) }
+        binding.recyclerView.adapter = listPlats?.let { RecyclerAdapter(it, applicationContext) }
         val dividerItemDecoration = DividerItemDecoration(
             binding.recyclerView.getContext(),
             linearLayoutManager.getOrientation()
