@@ -16,31 +16,24 @@ class HomeActivity : AppCompatActivity() {
 
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        var optionSelected: Button;
         binding.buttonStarter.setOnClickListener {
             Toast.makeText(applicationContext, "Choisissez votre entrée", Toast.LENGTH_LONG).show()
-            val intent = Intent(this@HomeActivity, ListActivity::class.java)
-            optionSelected = findViewById(R.id.button_starter)
-            val message = optionSelected.text.toString()
-            intent.putExtra("category_key", message)
-            startActivity(intent)
+            displayListPage(binding.buttonStarter)
         }
         binding.buttonMain.setOnClickListener {
             Toast.makeText(applicationContext, "Choisissez votre plat", Toast.LENGTH_LONG).show()
-            val intent = Intent(this@HomeActivity, ListActivity::class.java)
-            optionSelected = findViewById(R.id.button_main)
-            val message = optionSelected.text.toString()
-            intent.putExtra("category_key", message)
-            startActivity(intent)
+            displayListPage(binding.buttonMain)
         }
         binding.buttonDessert.setOnClickListener {
             Toast.makeText(applicationContext, "Choisissez votre dessert", Toast.LENGTH_LONG).show()
-            val intent = Intent(this@HomeActivity, ListActivity::class.java)
-            optionSelected = findViewById(R.id.button_dessert)
-            val category = optionSelected.text.toString()
-            intent.putExtra("category_key", category)
-            startActivity(intent)
+            displayListPage(binding.buttonDessert)
         }
+    }
+
+    private fun displayListPage(id: Button) {
+        val intent = Intent(this, ListActivity::class.java)
+        intent.putExtra(CATEGORY, id.text.toString())
+        startActivity(intent)
     }
 
     override fun onDestroy() {
@@ -49,4 +42,7 @@ class HomeActivity : AppCompatActivity() {
         Log.i("HomeActivity", "onDestroy Called")
     }
 
+    companion object {
+        const val CATEGORY = "category_key"
+    }
 }
