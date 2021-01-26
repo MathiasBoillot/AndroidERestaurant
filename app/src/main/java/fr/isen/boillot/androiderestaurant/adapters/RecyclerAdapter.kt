@@ -28,12 +28,12 @@ class RecyclerAdapter(private val categories: List<Item>, private val context: C
 
     override fun onBindViewHolder(holder: RecyclerAdapter.CategoryHolder, position: Int) {
         holder.title.text = categories[position].name
-        holder.price.text = categories[position].prices.map { it.price }.toString()
+        holder.price.text = categories[position].getFormattedPrice()
         holder.ingredient.text = categories[position].ingredients.map { it.name }.toString()
-        if(categories[position].images.first().isEmpty()) {
+        if(categories[position].getFirstPicture().isNullOrEmpty()) {
             Picasso.get().load("https://t3.ftcdn.net/jpg/00/78/20/58/240_F_78205827_7oYojKCyxIhw0oitmk6gqoEo12mDkBdi.jpg").into(holder.images)
         } else {
-            Picasso.get().load(categories[position].images.first()).into(holder.images)
+            Picasso.get().load(categories[position].getFirstPicture()).into(holder.images)
         }
 
         val textView = holder.title

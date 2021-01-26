@@ -32,7 +32,7 @@ class ListActivity : AppCompatActivity() {
         val category = intent.getStringExtra("category_key")
         title = category
         val messageTextView: TextView = binding.textView
-        messageTextView.text = category
+        messageTextView.text = "Notre carte"
 
         postData(category)
 
@@ -56,8 +56,6 @@ class ListActivity : AppCompatActivity() {
         val stringRequest = JsonObjectRequest(Request.Method.POST, url, params,
             {
                 Log.d("json", it.toString())
-//                val data: Array<DataResult> =
-//                    Gson().fromJson(it["data"].toString(), Array<DataResult>::class.java)
                 val gson: DataResult = Gson().fromJson(it.toString(), DataResult::class.java)
                gson.data.firstOrNull{ it.name == category}?.items?.let{ items ->
                    displayCategories(items)
@@ -68,12 +66,13 @@ class ListActivity : AppCompatActivity() {
             },
             { textView.text = "That didn't work!" })
 
+
+
         // Add the request to the RequestQueue.
         queue.add(stringRequest)
     }
 
     private fun displayCategories(category: List<Item>) {
-        binding.categoryLoader.visibility = View.GONE
         binding.categoryLoader.isVisible = false
         binding.recyclerView.isVisible = true
         linearLayoutManager = LinearLayoutManager(this)
