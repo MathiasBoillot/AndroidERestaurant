@@ -8,6 +8,8 @@
     <string name="button_dessert">Desserts</string>
     <string name="random_value">Random</string>
     <string name="home_phrase1">Une expérience que vous n\'oublierez pas</string>
+    <string name="logo_description">logo app</string>
+    <string name="bg_home_description">background home page</string>
     <string-array name="starter_title">
             <item>Mini burger</item>
             <item>Salade du pauvre</item>
