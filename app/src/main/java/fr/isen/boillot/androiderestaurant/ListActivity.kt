@@ -6,7 +6,6 @@ import android.view.View
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.volley.Request
 import com.android.volley.toolbox.JsonObjectRequest
@@ -15,6 +14,7 @@ import com.google.gson.Gson
 import fr.isen.boillot.androiderestaurant.model.DataResult
 import fr.isen.boillot.androiderestaurant.adapters.RecyclerAdapter
 import fr.isen.boillot.androiderestaurant.databinding.ActivityListBinding
+import fr.isen.boillot.androiderestaurant.model.Item
 import org.json.JSONException
 import org.json.JSONObject
 
@@ -29,18 +29,18 @@ class ListActivity : AppCompatActivity() {
         binding = ActivityListBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val message = intent.getStringExtra("category_key")
-        title = message
+        val category = intent.getStringExtra("category_key")
+        title = category
         val messageTextView: TextView = binding.textView
-        messageTextView.text = message
+        messageTextView.text = category
 
-        postData()
+        postData(category)
 
 
 
     }
 
-    private fun postData() {
+    private fun postData(category : String?) {
         val textView = findViewById<TextView>(R.id.text)
 
         // Instantiate the RequestQueue.
@@ -59,10 +59,11 @@ class ListActivity : AppCompatActivity() {
 //                val data: Array<DataResult> =
 //                    Gson().fromJson(it["data"].toString(), Array<DataResult>::class.java)
                 val gson: DataResult = Gson().fromJson(it.toString(), DataResult::class.java)
-                val categories: List<String> = gson.data.map {
-                    it.name
-                }
-                displayCategories(categories)
+               gson.data.firstOrNull{ it.name == category}?.items?.let{ items ->
+                   displayCategories(items)
+               } ?: run {
+                   Log.e("ListActivity", "Pas de catégorie trouvée")
+               }
                 Log.d("data", gson.toString())
             },
             { textView.text = "That didn't work!" })
@@ -71,7 +72,7 @@ class ListActivity : AppCompatActivity() {
         queue.add(stringRequest)
     }
 
-    private fun displayCategories(category: List<String>) {
+    private fun displayCategories(category: List<Item>) {
         binding.categoryLoader.visibility = View.GONE
         binding.categoryLoader.isVisible = false
         binding.recyclerView.isVisible = true
