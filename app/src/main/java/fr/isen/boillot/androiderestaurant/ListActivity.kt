@@ -1,15 +1,16 @@
 package fr.isen.boillot.androiderestaurant
 
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
-import android.view.View
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.android.volley.Request
-import com.android.volley.toolbox.JsonObjectRequest
-import com.android.volley.toolbox.Volley
+import com.android.volley.RequestQueue
+import com.android.volley.toolbox.*
 import com.google.gson.Gson
 import fr.isen.boillot.androiderestaurant.model.DataResult
 import fr.isen.boillot.androiderestaurant.adapters.RecyclerAdapter
@@ -22,6 +23,7 @@ import org.json.JSONObject
 class ListActivity : AppCompatActivity() {
     private lateinit var linearLayoutManager: LinearLayoutManager
     private lateinit var binding: ActivityListBinding
+    lateinit var swipeRefreshLayout: SwipeRefreshLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,13 +36,23 @@ class ListActivity : AppCompatActivity() {
         val messageTextView: TextView = binding.textView
         messageTextView.text = "Notre carte"
 
-        postData(category)
+//        val button_refresh : Button = binding.refreshCache
+//        button_refresh.setOnClickListener{
+//            applicationContext.cacheDir.deleteRecursively()
+//        }
 
+        swipeRefreshLayout = binding.swipeRefresh
+        swipeRefreshLayout.setOnRefreshListener {
+            Handler().postDelayed(Runnable {
+                swipeRefreshLayout.isRefreshing = false
+            }, 4000)
+        }
+        postData(category)
 
 
     }
 
-    private fun postData(category : String?) {
+    private fun postData(category: String?) {
         val textView = findViewById<TextView>(R.id.text)
 
         // Instantiate the RequestQueue.
@@ -52,25 +64,38 @@ class ListActivity : AppCompatActivity() {
         } catch (e: JSONException) {
             e.printStackTrace()
         }
+        // Instantiate the cache
+        val cache = DiskBasedCache(cacheDir, 4096 * 4096) // 2MB cap
+
+        // Set up the network to use HttpURLConnection as the HTTP client.
+        val network = BasicNetwork(HurlStack())
+
+        // Instantiate the RequestQueue with the cache and network. Start the queue.
+        val requestQueue = RequestQueue(cache, network).apply {
+            start()
+        }
 
         val stringRequest = JsonObjectRequest(Request.Method.POST, url, params,
             {
-                Log.d("json", it.toString())
                 val gson: DataResult = Gson().fromJson(it.toString(), DataResult::class.java)
-               gson.data.firstOrNull{ it.name == category}?.items?.let{ items ->
-                   displayCategories(items)
-               } ?: run {
-                   Log.e("ListActivity", "Pas de catégorie trouvée")
-               }
+                gson.data.firstOrNull { it.name == category }?.items?.let { items ->
+                    displayCategories(items)
+                } ?: run {
+                    Log.e("ListActivity", "Pas de catégorie trouvée")
+                }
                 Log.d("data", gson.toString())
             },
-            { textView.text = "That didn't work!" })
+            { error ->
+                // Handle error
+                textView.text = "ERROR: %s".format(error.toString())
+            })
 
-
-
+        // Reset the cache
+        requestQueue.cache.clear()
         // Add the request to the RequestQueue.
-        queue.add(stringRequest)
+        requestQueue.add(stringRequest)
     }
+
 
     private fun displayCategories(category: List<Item>) {
         binding.categoryLoader.isVisible = false
