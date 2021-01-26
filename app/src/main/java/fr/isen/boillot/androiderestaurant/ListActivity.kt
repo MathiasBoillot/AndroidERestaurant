@@ -36,11 +36,6 @@ class ListActivity : AppCompatActivity() {
         val messageTextView: TextView = binding.textView
         messageTextView.text = "Notre carte"
 
-//        val button_refresh : Button = binding.refreshCache
-//        button_refresh.setOnClickListener{
-//            applicationContext.cacheDir.deleteRecursively()
-//        }
-
         swipeRefreshLayout = binding.swipeRefresh
         swipeRefreshLayout.setOnRefreshListener {
             Handler().postDelayed(Runnable {
