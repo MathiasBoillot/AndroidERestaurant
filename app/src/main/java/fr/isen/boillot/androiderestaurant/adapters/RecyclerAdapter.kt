@@ -21,7 +21,7 @@ class RecyclerAdapter(private val categories: List<String>, private val context:
     override fun onBindViewHolder(holder: RecyclerAdapter.CategoryHolder, position: Int) {
         holder.title.text = categories[position]
         val textView = holder.title
-        textView.setOnClickListener{
+        textView.setOnClickListener {
 //            val intent = Intent(context, ListActivity::class.java)
 //            intent.putExtra(HomeActivity.CATEGORY, holder.title.text.toString())
 //            context.startActivity(intent)
@@ -32,6 +32,6 @@ class RecyclerAdapter(private val categories: List<String>, private val context:
     override fun getItemCount(): Int = categories.size
 
     class CategoryHolder(binding: ItemRowBinding) : RecyclerView.ViewHolder(binding.root) {
-        val title = binding.itemRow
+        val title = binding.itemTitle
     }
 }
