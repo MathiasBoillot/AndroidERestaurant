@@ -26,7 +26,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:srcCompat="@drawable/woman_1253508_1920" />
+                 />
 
             <TextView
                 android:id="@+id/item_price"
