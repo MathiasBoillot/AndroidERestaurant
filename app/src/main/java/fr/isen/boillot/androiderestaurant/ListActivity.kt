@@ -1,5 +1,6 @@
 package fr.isen.boillot.androiderestaurant
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
@@ -97,23 +98,11 @@ class ListActivity : AppCompatActivity() {
         binding.recyclerView.isVisible = true
         linearLayoutManager = LinearLayoutManager(this)
         binding.recyclerView.layoutManager = LinearLayoutManager(this)
-        binding.recyclerView.adapter = RecyclerAdapter(category, applicationContext)
-//        var listPlats: List<String>? = null
-//        if (category.equals("Entrées")) {
-//            listPlats = resources.getStringArray(R.array.starter_title).toList()
-//        }
-//        if (category.equals("Plats")) {
-//            listPlats = resources.getStringArray(R.array.main_name).toList()
-//        }
-//        if (category.equals("Desserts")) {
-//            listPlats = resources.getStringArray(R.array.dessert_name).toList()
-//        }
-//        binding.recyclerView.adapter = listPlats?.let { RecyclerAdapter(it, applicationContext) }
-//        val dividerItemDecoration = DividerItemDecoration(
-//            binding.recyclerView.getContext(),
-//            linearLayoutManager.getOrientation()
-//        )
-//        binding.recyclerView.addItemDecoration(dividerItemDecoration)
+        binding.recyclerView.adapter = RecyclerAdapter(category) {
+            val intent = Intent(this, DetailActivity::class.java)
+            intent.putExtra("item", it)
+            startActivity(intent)
+        }
     }
 }
 
