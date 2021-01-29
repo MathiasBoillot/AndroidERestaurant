@@ -8,4 +8,10 @@
     <string name="logo_description">logo app</string>
     <string name="bg_home_description">background home page</string>
     <string name="our_card">Notre carte</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="less_button">Value less</string>
+    <string name="more_button">value more</string>
+    <string name="one">1</string>
+    <string name="Total_cart">Total : 0</string>
 </resources>
