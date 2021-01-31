@@ -87,7 +87,7 @@ class ListActivity : AppCompatActivity() {
             })
 
         // Reset the cache
-        requestQueue.cache.clear()
+        //requestQueue.cache.clear()
         // Add the request to the RequestQueue.
         requestQueue.add(stringRequest)
     }

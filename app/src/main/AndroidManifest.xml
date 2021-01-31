@@ -13,7 +13,13 @@
         android:theme="@style/Theme.AndroidERestaurant"
         android:usesCleartextTraffic="true">
         <activity android:name=".adapters.ViewPagerAdapter"></activity>
-        <activity android:name=".DetailActivity" />
+        <activity
+            android:name=".DetailActivity"
+            android:parentActivityName=".ListActivity" >
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value=".ListActivity" />
+        </activity>
         <activity
             android:name=".ListActivity"
             android:parentActivityName=".HomeActivity">
