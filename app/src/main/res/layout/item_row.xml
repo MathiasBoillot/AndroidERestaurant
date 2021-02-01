@@ -23,10 +23,10 @@
                 android:id="@+id/item_pic"
                 android:layout_width="130dp"
                 android:layout_height="130dp"
+                android:scaleType="fitCenter"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                 />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/item_price"

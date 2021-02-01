@@ -5,17 +5,13 @@ import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.TextView
-import android.widget.Toast
 import androidx.core.view.isVisible
 import com.google.android.material.snackbar.Snackbar
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
-import fr.isen.boillot.androiderestaurant.adapters.CartAdapter
-import fr.isen.boillot.androiderestaurant.adapters.RecyclerAdapter
 import fr.isen.boillot.androiderestaurant.adapters.ViewPagerAdapter
 import fr.isen.boillot.androiderestaurant.databinding.ActivityDetailBinding
 import fr.isen.boillot.androiderestaurant.model.Item

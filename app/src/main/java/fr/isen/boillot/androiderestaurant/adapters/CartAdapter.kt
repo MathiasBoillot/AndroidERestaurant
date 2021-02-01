@@ -1,17 +1,11 @@
 package fr.isen.boillot.androiderestaurant.adapters
 
 import android.content.Context
-import android.content.SharedPreferences
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.AdapterView
-import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
-import com.google.gson.Gson
-import com.google.gson.GsonBuilder
 import com.squareup.picasso.Picasso
 import fr.isen.boillot.androiderestaurant.DetailActivity
-import fr.isen.boillot.androiderestaurant.DetailActivity.Companion.FILE_PREF
 import fr.isen.boillot.androiderestaurant.R
 import fr.isen.boillot.androiderestaurant.databinding.ItemOrderCartBinding
 import fr.isen.boillot.androiderestaurant.model.Order
@@ -27,7 +21,6 @@ class CartAdapter(
         val itemName = binding.itemName
         val itemPrice = binding.itemPriceTotal
         val images = binding.itemPic
-        val layout = binding.root
         val itemQuantity = binding.itemQuantity
         val deleteItem = binding.deleteItem
     }
@@ -70,32 +63,14 @@ class CartAdapter(
         val file = File(context.cacheDir.absolutePath + "/${DetailActivity.FILE_ORDER}")
 
         file.exists().let {
-            val orderList = Gson().fromJson(file.readText(), OrderList::class.java) as OrderList
-
-            if (orderList.order[position].quantity > 1) {
-                orderList.order[position].quantity--
+            if (orders.order[position].quantity > 1) {
                 orders.order[position].quantity--
-            } else if (orderList.order[position].quantity == 1) {
-                orderList.order.removeAt(position)
+            } else if (orders.order[position].quantity == 1) {
                 orders.order.removeAt(position)
             }
-            cartItem(orderList)
-            file.writeText(Gson().toJson(orderList))
-
             notifyItemRemoved(position)
             notifyDataSetChanged()
         }
     }
-
-
-    private fun cartItem(orders: OrderList) {
-        val count = orders.order.sumOf { it.quantity }
-        val sharedPreference = context.getSharedPreferences(FILE_PREF, AppCompatActivity.MODE_PRIVATE)
-        sharedPreference.edit().apply {
-            putInt("quantity", count )
-        }.apply()
-    }
-
-
 
 }
