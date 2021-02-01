@@ -14,6 +14,8 @@ import androidx.core.view.isVisible
 import com.google.android.material.snackbar.Snackbar
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
+import fr.isen.boillot.androiderestaurant.adapters.CartAdapter
+import fr.isen.boillot.androiderestaurant.adapters.RecyclerAdapter
 import fr.isen.boillot.androiderestaurant.adapters.ViewPagerAdapter
 import fr.isen.boillot.androiderestaurant.databinding.ActivityDetailBinding
 import fr.isen.boillot.androiderestaurant.model.Item
@@ -63,7 +65,7 @@ class DetailActivity : AppCompatActivity() {
 
     private fun createOrUpdateFile(item: Item, quantity: Int) {
 
-        val file = File(cacheDir.absolutePath + "/" + FILE)
+        val file = File(cacheDir.absolutePath + "/$FILE_ORDER")
         val gson = GsonBuilder().setPrettyPrinting().create()
         if (file.exists()) {
             val orderList = Gson().fromJson(file.readText(), OrderList::class.java) as OrderList
@@ -78,7 +80,7 @@ class DetailActivity : AppCompatActivity() {
             val orderList = gson.toJson(OrderList(mutableListOf(Order(item, quantity))))
             file.writeText(orderList)
         }
-        val sharedPreferences: SharedPreferences = getSharedPreferences(FILE, Context.MODE_PRIVATE)
+        val sharedPreferences: SharedPreferences = getSharedPreferences(FILE_PREF, Context.MODE_PRIVATE)
         val currentQuantity = sharedPreferences.getInt("quantity", 0)
         sharedPreferences.edit().apply {
             putInt("quantity", currentQuantity + quantity)
@@ -97,24 +99,17 @@ class DetailActivity : AppCompatActivity() {
         menuInflater.inflate(R.menu.basket_menu, menu)
         menuItem = menu?.findItem(R.id.show_basket)!!
         setupBadge(menuItem)
+        menuItem.actionView.setOnClickListener {
+            val menuIntent: Intent = Intent(this, CartActivity::class.java)
+            startActivity(menuIntent)
+        }
         return super.onCreateOptionsMenu(menu)
-    }
-
-    // actions on click menu items
-    override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
-        R.id.show_basket -> {
-            Toast.makeText(this, "Print action", Toast.LENGTH_LONG).show()
-            true
-        }
-        else -> {
-            super.onOptionsItemSelected(item)
-        }
     }
 
     private fun setupBadge(item: MenuItem) {
         val textView = item.actionView.findViewById<TextView>(R.id.nbItems)
         val sharedPreferences: SharedPreferences =
-            this.getSharedPreferences(FILE, Context.MODE_PRIVATE)
+            this.getSharedPreferences(FILE_PREF, Context.MODE_PRIVATE)
 
         val quantity = sharedPreferences.getInt("quantity", 0)
         if (quantity == 0) {
@@ -126,6 +121,7 @@ class DetailActivity : AppCompatActivity() {
     }
 
     companion object {
-        const val FILE = "cart.json"
+        const val FILE_ORDER = "cart.json"
+        const val FILE_PREF = "app_pref"
     }
 }

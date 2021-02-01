@@ -18,6 +18,7 @@ import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.toolbox.*
 import com.google.gson.Gson
+import fr.isen.boillot.androiderestaurant.DetailActivity.Companion.FILE_PREF
 import fr.isen.boillot.androiderestaurant.model.DataResult
 import fr.isen.boillot.androiderestaurant.adapters.RecyclerAdapter
 import fr.isen.boillot.androiderestaurant.databinding.ActivityListBinding
@@ -135,7 +136,7 @@ class ListActivity : AppCompatActivity() {
 
     private fun setupBadge(item: MenuItem) {
         val textView = item.actionView.findViewById<TextView>(R.id.nbItems)
-        val sharedPreferences: SharedPreferences = this.getSharedPreferences(FILE, Context.MODE_PRIVATE)
+        val sharedPreferences: SharedPreferences = this.getSharedPreferences(FILE_PREF, Context.MODE_PRIVATE)
 
         if (sharedPreferences.contains("quantity")){
             val quantity = sharedPreferences.getInt("quantity", 0)
@@ -149,9 +150,6 @@ class ListActivity : AppCompatActivity() {
         } else {
             textView.isVisible = false
         }
-    }
-    companion object {
-        const val FILE = "cart.json"
     }
 }
 

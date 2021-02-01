@@ -12,7 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroidERestaurant"
         android:usesCleartextTraffic="true">
-        <activity android:name=".CartActivity"></activity>
+        <activity android:name=".adapters.CartAdapter"></activity>
+        <activity android:name=".CartActivity" />
         <activity android:name=".adapters.ViewPagerAdapter" />
         <activity android:name=".DetailActivity">
 
