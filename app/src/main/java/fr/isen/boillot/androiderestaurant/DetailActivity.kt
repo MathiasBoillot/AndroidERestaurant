@@ -3,7 +3,6 @@ package fr.isen.boillot.androiderestaurant
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.view.MenuItem
 import com.google.android.material.snackbar.Snackbar
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
@@ -16,7 +15,6 @@ import java.io.File
 
 class DetailActivity : BaseActivity() {
     private lateinit var binding: ActivityDetailBinding
-    private lateinit var menuItem: MenuItem
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,7 +30,7 @@ class DetailActivity : BaseActivity() {
             binding.viewPager.adapter = ViewPagerAdapter(this, it)
         }
 
-        var quantity: Int = 1
+        var quantity = 1
 
         calculTotal(quantity, item)
 
@@ -86,7 +84,7 @@ class DetailActivity : BaseActivity() {
 
     private fun calculTotal(quantity: Int, item: Item) {
         val total = quantity * item.getPrice()
-        binding.totalDetail.text = "Total : $total"
+        "Total : $total".also { binding.totalDetail.text = it }
     }
 
 

@@ -13,9 +13,17 @@
     <string name="less_button">Value less</string>
     <string name="more_button">value more</string>
     <string name="one">1</string>
-    <string name="Total_cart">Total : 0</string>
     <string name="basket">Panier</string>
     <string name="total_cart">Total : 0€</string>
-    <string name="Trash_item">Trash item</string>
+    <string name="trash_item">Trash item</string>
+    <string name="item_image_order">Image dish order</string>
+    <string name="item_describ_order">description dish order</string>
+    <string name="image_list_dish">image dish list</string>
+    <string name="arrow_list_dish">arrow list dish</string>
+    <string name="title_dish">Kebab</string>
+    <string name="description_dish">Salade, tomate, oignon chef</string>
+    <string name="image_dish_detail">Image for dish detail</string>
+    <string name="basket_item">basket logo</string>
+    <string name="price_dish">0€</string>
 
 </resources>

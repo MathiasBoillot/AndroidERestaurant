@@ -20,10 +20,11 @@ import org.json.JSONException
 import org.json.JSONObject
 
 
+@Suppress("DEPRECATION")
 class ListActivity : BaseActivity() {
     private lateinit var linearLayoutManager: LinearLayoutManager
     private lateinit var binding: ActivityListBinding
-    lateinit var swipeRefreshLayout: SwipeRefreshLayout
+    private lateinit var swipeRefreshLayout: SwipeRefreshLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,7 +39,7 @@ class ListActivity : BaseActivity() {
 
         swipeRefreshLayout = binding.swipeRefresh
         swipeRefreshLayout.setOnRefreshListener {
-            Handler().postDelayed(Runnable {
+            Handler().postDelayed({
                 swipeRefreshLayout.isRefreshing = false
             }, 4000)
         }
@@ -50,7 +51,7 @@ class ListActivity : BaseActivity() {
         val textView = findViewById<TextView>(R.id.text)
 
         // Instantiate the RequestQueue.
-        val queue = Volley.newRequestQueue(this)
+        //val queue = Volley.newRequestQueue(this)
         val url = "http://test.api.catering.bluecodegames.com/menu"
         val params = JSONObject()
         try {
@@ -70,19 +71,22 @@ class ListActivity : BaseActivity() {
         }
 
         val stringRequest = JsonObjectRequest(Request.Method.POST, url, params,
-            {
-                val gson: DataResult = Gson().fromJson(it.toString(), DataResult::class.java)
+            { it ->
+                val gson: DataResult = Gson().fromJson(
+                    it.toString(),
+                    DataResult::class.java
+                )
                 gson.data.firstOrNull { it.name == category }?.items?.let { items ->
                     displayCategories(items)
                 } ?: run {
                     Log.e("ListActivity", "Pas de catégorie trouvée")
                 }
                 Log.d("data", gson.toString())
-            },
-            { error ->
-                // Handle error
-                textView.text = "ERROR: %s".format(error.toString())
-            })
+            }
+        ) { error ->
+            // Handle error
+            "ERROR: %s".format(error.toString()).also { textView.text = it }
+        }
 
         // Reset the cache
         //requestQueue.cache.clear()

@@ -15,7 +15,7 @@ class DetailFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         binding = FragmentDetailBinding.inflate(inflater, container, false)
         return binding.root
@@ -25,7 +25,7 @@ class DetailFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         arguments?.getString("URL").let {
-            Picasso.get().load(it).into(binding.imageView2)
+            Picasso.get().load(it).into(binding.fragmentImage)
         }
     }
 

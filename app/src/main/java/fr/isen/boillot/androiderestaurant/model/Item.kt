@@ -17,7 +17,7 @@ data class Item(
         null
     }
 
-    fun getIngredients(): String = ingredients.map { it.name }.joinToString(", ")
+    fun getIngredients(): String = ingredients.map(Ingredient::name).joinToString(", ")
 
     fun getAllPictures() = if (images.isNotEmpty() && images.any { it.isNotEmpty() }) {
         images.filter { it.isNotEmpty() }

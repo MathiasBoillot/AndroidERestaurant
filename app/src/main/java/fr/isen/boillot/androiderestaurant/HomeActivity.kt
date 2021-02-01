@@ -1,7 +1,6 @@
 package fr.isen.boillot.androiderestaurant
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
@@ -39,5 +38,10 @@ class HomeActivity : BaseActivity() {
     override fun onDestroy() {
         super.onDestroy()
         Log.i("HomeActivity", "onDestroy Called")
+    }
+
+    override fun onResume() {
+        super.onResume()
+        invalidateOptionsMenu()
     }
 }

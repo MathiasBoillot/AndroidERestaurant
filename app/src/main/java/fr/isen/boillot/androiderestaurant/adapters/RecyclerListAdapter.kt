@@ -18,7 +18,7 @@ class RecyclerAdapter(
         return CategoryHolder(itemBinding)
     }
 
-    override fun onBindViewHolder(holder: RecyclerAdapter.CategoryHolder, position: Int) {
+    override fun onBindViewHolder(holder: CategoryHolder, position: Int) {
         holder.title.text = categories[position].name
         holder.price.text = categories[position].getFormattedPrice()
         holder.ingredient.text = categories[position].getIngredients()
