@@ -22,7 +22,7 @@
             <ImageView
                 android:id="@+id/item_pic"
                 android:layout_width="130dp"
-                android:layout_height="140dp"
+                android:layout_height="0dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -70,6 +70,16 @@
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/item_name" />
+
+            <ImageView
+                android:id="@+id/delete_item"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginBottom="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:srcCompat="@drawable/delete" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

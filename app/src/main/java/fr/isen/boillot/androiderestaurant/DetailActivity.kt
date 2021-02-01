@@ -33,6 +33,7 @@ class DetailActivity : AppCompatActivity() {
         setContentView(binding.root)
         val item = intent.getSerializableExtra("item") as Item
 
+
         binding.titleDetail.text = item.name
         binding.detailIngredient.text = item.getIngredients()
 
@@ -88,6 +89,7 @@ class DetailActivity : AppCompatActivity() {
         }.apply()
         setupBadge(menuItem)
         Snackbar.make(binding.root, "Ajouté au panier", Snackbar.LENGTH_LONG).show()
+
     }
 
     private fun calculTotal(quantity: Int, item: Item) {
@@ -118,6 +120,12 @@ class DetailActivity : AppCompatActivity() {
             textView.text = quantity.toString()
             textView.isVisible = true
         }
+
+    }
+
+    override fun onResume() {
+        super.onResume()
+        invalidateOptionsMenu()
     }
 
     companion object {

@@ -15,5 +15,7 @@
     <string name="one">1</string>
     <string name="Total_cart">Total : 0</string>
     <string name="basket">Panier</string>
+    <string name="total_cart">Total : 0€</string>
+    <string name="Trash_item">Trash item</string>
 
 </resources>

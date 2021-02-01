@@ -51,7 +51,6 @@ class ListActivity : AppCompatActivity() {
         }
         postData(category)
 
-
     }
 
     private fun postData(category: String?) {
@@ -113,7 +112,13 @@ class ListActivity : AppCompatActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.basket_menu,menu)
-        menu?.findItem(R.id.show_basket)?.let { setupBadge(it) }
+        menu?.findItem(R.id.show_basket)?.let {
+            setupBadge(it)
+            it.actionView.setOnClickListener {
+                val menuIntent: Intent = Intent(this, CartActivity::class.java)
+                startActivity(menuIntent)
+            }
+        }
         return super.onCreateOptionsMenu(menu)
     }
 
@@ -150,6 +155,12 @@ class ListActivity : AppCompatActivity() {
         } else {
             textView.isVisible = false
         }
+    }
+
+
+    override fun onResume() {
+        super.onResume()
+        invalidateOptionsMenu()
     }
 }
 

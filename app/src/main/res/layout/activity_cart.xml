@@ -24,6 +24,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
+                android:fontFamily="@font/arbutus_slab"
                 android:text="@string/basket"
                 android:textSize="24sp"
                 android:textStyle="bold"
@@ -44,9 +45,15 @@
 
             <TextView
                 android:id="@+id/total_price_order"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="TextView"
+                android:background="#B0FFAC43"
+                android:fontFamily="@font/kaushan_script"
+                android:paddingTop="40dp"
+                android:paddingBottom="40dp"
+                android:text="@string/total_cart"
+                android:textAlignment="center"
+                android:textSize="24sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
