@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="fr.isen.boillot.androiderestaurant">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -11,8 +12,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroidERestaurant"
-        android:usesCleartextTraffic="true">
-        <activity android:name=".adapters.CartAdapter"></activity>
+        android:usesCleartextTraffic="true"
+        tools:targetApi="m">
+        <activity android:name=".adapters.CartAdapter" />
         <activity android:name=".CartActivity" />
         <activity android:name=".adapters.ViewPagerAdapter" />
         <activity android:name=".DetailActivity">

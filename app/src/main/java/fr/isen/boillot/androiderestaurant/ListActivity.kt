@@ -27,7 +27,7 @@ import org.json.JSONException
 import org.json.JSONObject
 
 
-class ListActivity : AppCompatActivity() {
+class ListActivity : BaseActivity() {
     private lateinit var linearLayoutManager: LinearLayoutManager
     private lateinit var binding: ActivityListBinding
     lateinit var swipeRefreshLayout: SwipeRefreshLayout
@@ -107,53 +107,6 @@ class ListActivity : AppCompatActivity() {
             val intent = Intent(this, DetailActivity::class.java)
             intent.putExtra("item", it)
             startActivity(intent)
-        }
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.basket_menu,menu)
-        menu?.findItem(R.id.show_basket)?.let {
-            setupBadge(it)
-            it.actionView.setOnClickListener {
-                val menuIntent: Intent = Intent(this, CartActivity::class.java)
-                startActivity(menuIntent)
-            }
-        }
-        return super.onCreateOptionsMenu(menu)
-    }
-
-    // actions on click menu items
-    override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
-        R.id.show_basket -> {
-            // User chose the "Print" item
-            Toast.makeText(this,"Print action",Toast.LENGTH_LONG).show()
-            true
-        }
-        android.R.id.home ->{
-            Toast.makeText(this,"Home action",Toast.LENGTH_LONG).show()
-            true
-        }
-
-        else -> {
-            super.onOptionsItemSelected(item)
-        }
-    }
-
-    private fun setupBadge(item: MenuItem) {
-        val textView = item.actionView.findViewById<TextView>(R.id.nbItems)
-        val sharedPreferences: SharedPreferences = this.getSharedPreferences(FILE_PREF, Context.MODE_PRIVATE)
-
-        if (sharedPreferences.contains("quantity")){
-            val quantity = sharedPreferences.getInt("quantity", 0)
-            if(quantity == 0){
-                textView.isVisible = false
-
-            } else {
-                textView.text = quantity.toString()
-                textView.isVisible = true
-            }
-        } else {
-            textView.isVisible = false
         }
     }
 

@@ -19,7 +19,7 @@ import fr.isen.boillot.androiderestaurant.model.Order
 import fr.isen.boillot.androiderestaurant.model.OrderList
 import java.io.File
 
-class DetailActivity : AppCompatActivity() {
+class DetailActivity : BaseActivity() {
     private lateinit var binding: ActivityDetailBinding
     private lateinit var menuItem: MenuItem
 
@@ -83,8 +83,8 @@ class DetailActivity : AppCompatActivity() {
             putInt("quantity", currentQuantity + quantity)
             putString("item", item.toString())
         }.apply()
-        setupBadge(menuItem)
         Snackbar.make(binding.root, "Ajouté au panier", Snackbar.LENGTH_LONG).show()
+        invalidateOptionsMenu()
 
     }
 
@@ -93,31 +93,6 @@ class DetailActivity : AppCompatActivity() {
         binding.totalDetail.text = "Total : $total"
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.basket_menu, menu)
-        menuItem = menu?.findItem(R.id.show_basket)!!
-        setupBadge(menuItem)
-        menuItem.actionView.setOnClickListener {
-            val menuIntent: Intent = Intent(this, CartActivity::class.java)
-            startActivity(menuIntent)
-        }
-        return super.onCreateOptionsMenu(menu)
-    }
-
-    private fun setupBadge(item: MenuItem) {
-        val textView = item.actionView.findViewById<TextView>(R.id.nbItems)
-        val sharedPreferences: SharedPreferences =
-            this.getSharedPreferences(FILE_PREF, Context.MODE_PRIVATE)
-
-        val quantity = sharedPreferences.getInt("quantity", 0)
-        if (quantity == 0) {
-            textView.isVisible = false
-        } else {
-            textView.text = quantity.toString()
-            textView.isVisible = true
-        }
-
-    }
 
     override fun onResume() {
         super.onResume()
