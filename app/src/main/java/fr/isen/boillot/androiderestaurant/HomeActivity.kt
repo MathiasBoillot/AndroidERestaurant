@@ -40,8 +40,4 @@ class HomeActivity : BaseActivity() {
         super.onDestroy()
         Log.i("HomeActivity", "onDestroy Called")
     }
-
-    companion object {
-        const val CATEGORY = "category_key"
-    }
 }

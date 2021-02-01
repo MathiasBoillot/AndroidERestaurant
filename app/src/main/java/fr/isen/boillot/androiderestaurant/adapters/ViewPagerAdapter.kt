@@ -6,7 +6,8 @@ import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import fr.isen.boillot.androiderestaurant.fragment.DetailFragment
 
-class ViewPagerAdapter(activity: AppCompatActivity, private val items: List<String>) : FragmentStateAdapter(activity) {
+class ViewPagerAdapter(activity: AppCompatActivity, private val items: List<String>) :
+    FragmentStateAdapter(activity) {
     override fun getItemCount(): Int = items.size
 
 

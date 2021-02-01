@@ -7,7 +7,9 @@ import android.widget.TextView
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.gson.Gson
-import fr.isen.boillot.androiderestaurant.DetailActivity.Companion.FILE_PREF
+import fr.isen.boillot.androiderestaurant.BaseActivity.Companion.BASKET_COUNTER
+import fr.isen.boillot.androiderestaurant.BaseActivity.Companion.FILE_ORDER
+import fr.isen.boillot.androiderestaurant.BaseActivity.Companion.FILE_PREF
 import fr.isen.boillot.androiderestaurant.adapters.CartAdapter
 import fr.isen.boillot.androiderestaurant.databinding.ActivityCartBinding
 import fr.isen.boillot.androiderestaurant.model.Order
@@ -17,7 +19,6 @@ import java.io.File
 class CartActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityCartBinding
-    private lateinit var linearLayoutManager: LinearLayoutManager
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,7 +27,7 @@ class CartActivity : AppCompatActivity() {
         setContentView(binding.root)
 
 
-        val file = File(cacheDir.absolutePath + "/${DetailActivity.FILE_ORDER}")
+        val file = File(cacheDir.absolutePath + "/$FILE_ORDER")
         if (file.exists()) {
             val orderList = Gson().fromJson(file.readText(), OrderList::class.java) as OrderList
             binding.recyclerViewCart.layoutManager = LinearLayoutManager(this)
@@ -38,27 +39,29 @@ class CartActivity : AppCompatActivity() {
             "Total : ${orderList.totalPriceOrder()} ".also { binding.totalPriceOrder.text = it }
         }
     }
+
     private fun deleteItem(order: Order) {
-        val file = File(cacheDir.absolutePath + "/${DetailActivity.FILE_ORDER}")
+        val file = File(cacheDir.absolutePath + "/$FILE_ORDER")
         file.exists().let {
             val orderList = Gson().fromJson(file.readText(), OrderList::class.java) as OrderList
 
-                orderList.order.firstOrNull { it.item == order.item }?.let {
-                    if(it.quantity > 1)
-                        it.quantity--
-                    else
-                        orderList.order.remove(it)
-                }
+            orderList.order.firstOrNull { it.item == order.item }?.let {
+                if (it.quantity > 1)
+                    it.quantity--
+                else
+                    orderList.order.remove(it)
+            }
             cartItem(orderList)
             file.writeText(Gson().toJson(orderList))
             "Total : ${orderList.totalPriceOrder()} ".also { binding.totalPriceOrder.text = it }
         }
     }
+
     private fun cartItem(orders: OrderList) {
         val count = orders.order.sumOf { it.quantity }
-        val sharedPreference = getSharedPreferences(FILE_PREF, AppCompatActivity.MODE_PRIVATE)
+        val sharedPreference = getSharedPreferences(FILE_PREF, MODE_PRIVATE)
         sharedPreference.edit().apply {
-            putInt("quantity", count )
+            putInt(BASKET_COUNTER, count)
         }.apply()
     }
 
@@ -75,7 +78,7 @@ class CartActivity : AppCompatActivity() {
 
     private fun getItemsCount(): Int {
         val sharedPreferences = getSharedPreferences(FILE_PREF, MODE_PRIVATE)
-        return sharedPreferences.getInt("quantity", 0)
+        return sharedPreferences.getInt(BASKET_COUNTER, 0)
     }
 
 }

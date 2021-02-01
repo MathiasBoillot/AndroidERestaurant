@@ -1,14 +1,9 @@
 package fr.isen.boillot.androiderestaurant
 
 import android.content.Context
-import android.content.Intent
 import android.content.SharedPreferences
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.Menu
 import android.view.MenuItem
-import android.widget.TextView
-import androidx.core.view.isVisible
 import com.google.android.material.snackbar.Snackbar
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
@@ -27,7 +22,7 @@ class DetailActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        val item = intent.getSerializableExtra("item") as Item
+        val item = intent.getSerializableExtra(ITEM) as Item
 
 
         binding.titleDetail.text = item.name
@@ -77,11 +72,12 @@ class DetailActivity : BaseActivity() {
             val orderList = gson.toJson(OrderList(mutableListOf(Order(item, quantity))))
             file.writeText(orderList)
         }
-        val sharedPreferences: SharedPreferences = getSharedPreferences(FILE_PREF, Context.MODE_PRIVATE)
-        val currentQuantity = sharedPreferences.getInt("quantity", 0)
+        val sharedPreferences: SharedPreferences =
+            getSharedPreferences(FILE_PREF, Context.MODE_PRIVATE)
+        val currentQuantity = sharedPreferences.getInt(BASKET_COUNTER, 0)
         sharedPreferences.edit().apply {
-            putInt("quantity", currentQuantity + quantity)
-            putString("item", item.toString())
+            putInt(BASKET_COUNTER, currentQuantity + quantity)
+            putString(ITEM, item.toString())
         }.apply()
         Snackbar.make(binding.root, "Ajouté au panier", Snackbar.LENGTH_LONG).show()
         invalidateOptionsMenu()
@@ -99,8 +95,5 @@ class DetailActivity : BaseActivity() {
         invalidateOptionsMenu()
     }
 
-    companion object {
-        const val FILE_ORDER = "cart.json"
-        const val FILE_PREF = "app_pref"
-    }
+
 }

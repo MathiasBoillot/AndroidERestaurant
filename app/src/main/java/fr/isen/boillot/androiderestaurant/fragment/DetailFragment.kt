@@ -6,8 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.squareup.picasso.Picasso
-import fr.isen.boillot.androiderestaurant.R
-import fr.isen.boillot.androiderestaurant.databinding.ActivityDetailBinding
 import fr.isen.boillot.androiderestaurant.databinding.FragmentDetailBinding
 
 class DetailFragment : Fragment() {
@@ -31,12 +29,10 @@ class DetailFragment : Fragment() {
         }
     }
 
-
-
     companion object {
         fun newInstance(picture: String?): DetailFragment {
             return DetailFragment().apply {
-                arguments=Bundle().apply { putString("URL", picture) }
+                arguments = Bundle().apply { putString("URL", picture) }
             }
         }
 

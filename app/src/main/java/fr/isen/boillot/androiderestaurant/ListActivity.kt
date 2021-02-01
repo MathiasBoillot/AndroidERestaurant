@@ -1,16 +1,10 @@
 package fr.isen.boillot.androiderestaurant
 
-import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
-import android.view.Menu
-import android.view.MenuItem
 import android.widget.TextView
-import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -18,7 +12,6 @@ import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.toolbox.*
 import com.google.gson.Gson
-import fr.isen.boillot.androiderestaurant.DetailActivity.Companion.FILE_PREF
 import fr.isen.boillot.androiderestaurant.model.DataResult
 import fr.isen.boillot.androiderestaurant.adapters.RecyclerAdapter
 import fr.isen.boillot.androiderestaurant.databinding.ActivityListBinding
@@ -38,7 +31,7 @@ class ListActivity : BaseActivity() {
         binding = ActivityListBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val category = intent.getStringExtra("category_key")
+        val category = intent.getStringExtra(CATEGORY)
         title = category
         val messageTextView: TextView = binding.textView
         messageTextView.text = "Notre carte"
@@ -105,7 +98,7 @@ class ListActivity : BaseActivity() {
         binding.recyclerView.layoutManager = LinearLayoutManager(this)
         binding.recyclerView.adapter = RecyclerAdapter(category) {
             val intent = Intent(this, DetailActivity::class.java)
-            intent.putExtra("item", it)
+            intent.putExtra(ITEM, it)
             startActivity(intent)
         }
     }

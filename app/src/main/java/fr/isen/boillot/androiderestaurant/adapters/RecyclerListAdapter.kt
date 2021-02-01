@@ -8,7 +8,10 @@ import fr.isen.boillot.androiderestaurant.R
 import fr.isen.boillot.androiderestaurant.databinding.ItemRowBinding
 import fr.isen.boillot.androiderestaurant.model.Item
 
-class RecyclerAdapter(private val categories: List<Item>, private val categoriesClickListener: (Item) -> Unit) :
+class RecyclerAdapter(
+    private val categories: List<Item>,
+    private val categoriesClickListener: (Item) -> Unit
+) :
     RecyclerView.Adapter<RecyclerAdapter.CategoryHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryHolder {
         val itemBinding = ItemRowBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -19,7 +22,7 @@ class RecyclerAdapter(private val categories: List<Item>, private val categories
         holder.title.text = categories[position].name
         holder.price.text = categories[position].getFormattedPrice()
         holder.ingredient.text = categories[position].getIngredients()
-        if(categories[position].getFirstPicture().isNullOrEmpty()) {
+        if (categories[position].getFirstPicture().isNullOrEmpty()) {
             Picasso.get()
                 .load("https://img.cuisineaz.com/660x660/2014-04-07/i58810-carpaccio-de-saumon.jpg")
                 .placeholder(R.drawable.ic_baseline_image_search_24)

@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
-import fr.isen.boillot.androiderestaurant.DetailActivity
+import fr.isen.boillot.androiderestaurant.BaseActivity.Companion.FILE_ORDER
 import fr.isen.boillot.androiderestaurant.R
 import fr.isen.boillot.androiderestaurant.databinding.ItemOrderCartBinding
 import fr.isen.boillot.androiderestaurant.model.Order
@@ -60,7 +60,7 @@ class CartAdapter(
     override fun getItemCount(): Int = orders.order.size
 
     private fun deleteItem(position: Int) {
-        val file = File(context.cacheDir.absolutePath + "/${DetailActivity.FILE_ORDER}")
+        val file = File(context.cacheDir.absolutePath + "/$FILE_ORDER")
 
         file.exists().let {
             if (orders.order[position].quantity > 1) {
