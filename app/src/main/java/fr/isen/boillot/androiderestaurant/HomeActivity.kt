@@ -38,7 +38,6 @@ class HomeActivity : AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
-
         Log.i("HomeActivity", "onDestroy Called")
     }
 

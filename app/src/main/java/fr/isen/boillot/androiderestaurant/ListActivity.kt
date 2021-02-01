@@ -1,10 +1,15 @@
 package fr.isen.boillot.androiderestaurant
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -103,6 +108,50 @@ class ListActivity : AppCompatActivity() {
             intent.putExtra("item", it)
             startActivity(intent)
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.basket_menu,menu)
+        menu?.findItem(R.id.show_basket)?.let { setupBadge(it) }
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    // actions on click menu items
+    override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
+        R.id.show_basket -> {
+            // User chose the "Print" item
+            Toast.makeText(this,"Print action",Toast.LENGTH_LONG).show()
+            true
+        }
+        android.R.id.home ->{
+            Toast.makeText(this,"Home action",Toast.LENGTH_LONG).show()
+            true
+        }
+
+        else -> {
+            super.onOptionsItemSelected(item)
+        }
+    }
+
+    private fun setupBadge(item: MenuItem) {
+        val textView = item.actionView.findViewById<TextView>(R.id.nbItems)
+        val sharedPreferences: SharedPreferences = this.getSharedPreferences(FILE, Context.MODE_PRIVATE)
+
+        if (sharedPreferences.contains("quantity")){
+            val quantity = sharedPreferences.getInt("quantity", 0)
+            if(quantity == 0){
+                textView.isVisible = false
+
+            } else {
+                textView.text = quantity.toString()
+                textView.isVisible = true
+            }
+        } else {
+            textView.isVisible = false
+        }
+    }
+    companion object {
+        const val FILE = "cart.json"
     }
 }
 

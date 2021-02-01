@@ -12,13 +12,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroidERestaurant"
         android:usesCleartextTraffic="true">
-        <activity android:name=".adapters.ViewPagerAdapter"></activity>
-        <activity
-            android:name=".DetailActivity"
-            android:parentActivityName=".ListActivity" >
-        <meta-data
-            android:name="android.support.PARENT_ACTIVITY"
-            android:value=".ListActivity" />
+        <activity android:name=".CartActivity"></activity>
+        <activity android:name=".adapters.ViewPagerAdapter" />
+        <activity android:name=".DetailActivity">
+
+            <!-- android:parentActivityName=".ListActivity" -->
+
+
+            <!-- <meta-data -->
+            <!-- android:name="android.support.PARENT_ACTIVITY" -->
+            <!-- android:value=".ListActivity" /> -->
         </activity>
         <activity
             android:name=".ListActivity"
@@ -34,10 +37,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <meta-data
-            android:name="preloaded_fonts"
-            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>

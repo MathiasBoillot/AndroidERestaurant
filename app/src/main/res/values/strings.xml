@@ -14,4 +14,5 @@
     <string name="more_button">value more</string>
     <string name="one">1</string>
     <string name="Total_cart">Total : 0</string>
+    <string name="basket">basket</string>
 </resources>
