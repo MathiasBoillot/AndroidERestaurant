@@ -40,4 +40,6 @@
     <string name="prompt_firstname">Prénom</string>
     <string name="prompt_lastname">Nom</string>
     <string name="prompt_address">Adresse</string>
+    <string name="account_connect">Déjà un compte ?</string>
+    <string name="account_register">Pas encore de compte ?</string>
 </resources>

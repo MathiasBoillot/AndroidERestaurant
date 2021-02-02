@@ -13,7 +13,7 @@ class LoginViewModel() : ViewModel() {
     val loginFormState: LiveData<LoginFormState> = _loginForm
 
 
-    fun loginDataChanged(dataForm: LoginFormData): Boolean {
+    fun registerDataChanged(dataForm: RegisterFormData): Boolean {
         return if (!isEmailValid(dataForm.email)) {
             _loginForm.value = LoginFormState(emailError = R.string.invalid_email)
             Log.i("Value email", dataForm.email)
@@ -29,6 +29,21 @@ class LoginViewModel() : ViewModel() {
         } else if (!isNameValid(dataForm.address)) {
             _loginForm.value = LoginFormState(addressError = R.string.invalid_address)
             Log.i("Value address", dataForm.address)
+            false
+        } else if (!isPasswordValid(dataForm.password)) {
+            _loginForm.value = LoginFormState(passwordError = R.string.invalid_password)
+            Log.i("Value password", dataForm.password)
+            false
+        } else {
+            _loginForm.value = LoginFormState(isDataValid = true)
+            true
+        }
+    }
+
+    fun signInDataChanged(dataForm: SignInFormData): Boolean {
+        return if (!isEmailValid(dataForm.email)) {
+            _loginForm.value = LoginFormState(emailError = R.string.invalid_email)
+            Log.i("Value email", dataForm.email)
             false
         } else if (!isPasswordValid(dataForm.password)) {
             _loginForm.value = LoginFormState(passwordError = R.string.invalid_password)

@@ -3,7 +3,7 @@ package fr.isen.boillot.androiderestaurant.login
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
-data class LoginFormData(
+data class RegisterFormData(
     @SerializedName("email") val email: String,
     @SerializedName("firstName") val firstName: String,
     @SerializedName("lastName") val lastName: String,

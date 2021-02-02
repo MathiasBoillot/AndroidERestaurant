@@ -1,5 +1,6 @@
 package fr.isen.boillot.androiderestaurant
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
@@ -7,7 +8,7 @@ import com.android.volley.Request
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import fr.isen.boillot.androiderestaurant.databinding.ActivityRegisterBinding
-import fr.isen.boillot.androiderestaurant.login.LoginFormData
+import fr.isen.boillot.androiderestaurant.login.RegisterFormData
 import fr.isen.boillot.androiderestaurant.login.LoginViewModel
 import org.json.JSONObject
 
@@ -15,7 +16,7 @@ import org.json.JSONObject
 class RegisterActivity : AppCompatActivity() {
     private lateinit var binding: ActivityRegisterBinding
     private lateinit var loginViewModel: LoginViewModel
-    private lateinit var dataForm: LoginFormData
+    private lateinit var dataForm: RegisterFormData
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,12 +27,16 @@ class RegisterActivity : AppCompatActivity() {
         binding.signInBtn.setOnClickListener {
             createAccount()
         }
+
+        binding.signInSwitch.setOnClickListener {
+            startActivity(Intent(this, SignInActivity::class.java))
+        }
     }
 
     override fun onUserInteraction() {
         super.onUserInteraction()
         loginViewModel = LoginViewModel()
-        dataForm = LoginFormData(
+        dataForm = RegisterFormData(
             email = binding.registerEmail.text.toString(),
             firstName = binding.registerFirstname.text.toString(),
             lastName = binding.registerLastname.text.toString(),
@@ -39,7 +44,7 @@ class RegisterActivity : AppCompatActivity() {
             password = binding.registerPassword.text.toString()
         )
 
-        binding.signInBtn.isEnabled = loginViewModel.loginDataChanged(dataForm)
+        binding.signInBtn.isEnabled = loginViewModel.registerDataChanged(dataForm)
     }
 
     private fun createAccount() {
