@@ -43,6 +43,8 @@ open class BaseActivity : AppCompatActivity() {
         const val BASKET_COUNTER = "counter"
         const val ITEM = "item"
         const val CATEGORY = "category_key"
+        const val ID = "user_id"
+
     }
 
 }

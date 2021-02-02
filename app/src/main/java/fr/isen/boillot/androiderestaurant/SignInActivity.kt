@@ -7,9 +7,11 @@ import android.util.Log
 import com.android.volley.Request
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
+import com.google.gson.Gson
 import fr.isen.boillot.androiderestaurant.databinding.ActivitySignInBinding
 import fr.isen.boillot.androiderestaurant.login.SignInFormData
 import fr.isen.boillot.androiderestaurant.login.LoginViewModel
+import fr.isen.boillot.androiderestaurant.model.UserResult
 import org.json.JSONObject
 
 class SignInActivity : AppCompatActivity() {
@@ -56,13 +58,17 @@ class SignInActivity : AppCompatActivity() {
 
         val request = JsonObjectRequest(Request.Method.POST, url, dataPost, {
             Log.d("response", it.toString())
+            val jsonResult : UserResult = Gson().fromJson(
+                it.toString(),
+                UserResult::class.java
+            )
+            val sharedPreference = getSharedPreferences(BaseActivity.FILE_PREF, MODE_PRIVATE)
+            sharedPreference.edit().apply {
+                putString(BaseActivity.ID, jsonResult.data.id)
+            }.apply()
         }) {
                 error -> error.printStackTrace()
         }
         queue.add(request)
-    }
-
-    companion object {
-        const val ID = "user_id"
     }
 }
