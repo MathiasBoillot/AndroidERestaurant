@@ -41,7 +41,7 @@ class CartActivity : AppCompatActivity() {
         }
 
         binding.totalPriceOrder.setOnClickListener {
-            startActivity(Intent(this, SignInActivity::class.java))
+            startActivity(Intent(this, RegisterActivity::class.java))
         }
     }
 
