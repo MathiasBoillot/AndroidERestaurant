@@ -1,5 +1,6 @@
 package fr.isen.boillot.androiderestaurant
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
@@ -37,6 +38,10 @@ class CartActivity : AppCompatActivity() {
                 invalidateOptionsMenu()
             }
             "Total : ${orderList.totalPriceOrder()} ".also { binding.totalPriceOrder.text = it }
+        }
+
+        binding.totalPriceOrder.setOnClickListener {
+            startActivity(Intent(this, SignInActivity::class.java))
         }
     }
 
