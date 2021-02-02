@@ -42,4 +42,7 @@
     <string name="prompt_address">Adresse</string>
     <string name="account_connect">Déjà un compte ?</string>
     <string name="account_register">Pas encore de compte ?</string>
+    <string name="success_order">Commande envoyé avec succès</string>
+    <string name="order_success_description">Nous allons nous occuper de votre commande le plus rapidement possible</string>
+    <string name="success_order_title">Ô Ptit Monde vous remercie</string>
 </resources>

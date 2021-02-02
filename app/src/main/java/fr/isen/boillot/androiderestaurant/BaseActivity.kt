@@ -18,9 +18,13 @@ open class BaseActivity : AppCompatActivity() {
         val menuView = (menu?.findItem(R.id.show_basket)?.actionView).apply {
             setupBadge(this)
         }
+
+
         menuView?.setOnClickListener {
             startActivity(Intent(this, CartActivity::class.java))
         }
+
+
         return super.onCreateOptionsMenu(menu)
     }
 

@@ -1,6 +1,7 @@
 package fr.isen.boillot.androiderestaurant
 
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -49,17 +50,18 @@ class CartActivity : AppCompatActivity() {
 
         binding.totalPriceOrder.setOnClickListener {
             val sharedPreference = getSharedPreferences(FILE_PREF, MODE_PRIVATE)
-            val id = sharedPreference.getString(ID, "0")
 
-            if (id == "0") {
+            if (sharedPreference.getString(ID, "0") == "0") {
                 startActivity(Intent(this, RegisterActivity::class.java))
             } else {
                 if (file.exists()) {
-                    val orderList = Gson().fromJson(file.readText(), JSONObject::class.java)
-                    orderPost(id, orderList, file)
-                    Toast.makeText(this, "Merci de votre commande", Toast.LENGTH_LONG).show()
+                    binding.orderLoader.isVisible = true
+                    binding.recyclerViewCart.isVisible = false
+                    val orderList = Gson().fromJson(file.readText(), OrderList::class.java)
+                    orderPost(sharedPreference, orderList, file)
+                } else {
+                    Toast.makeText(this, "Panier vide", Toast.LENGTH_LONG).show()
                 }
-                Toast.makeText(this, "Panier vide", Toast.LENGTH_LONG).show()
             }
         }
     }
@@ -80,6 +82,7 @@ class CartActivity : AppCompatActivity() {
             "Total : ${orderList.totalPriceOrder()} ".also { binding.totalPriceOrder.text = it }
         }
     }
+
 
     private fun cartItem(orders: OrderList) {
         val count = orders.order.sumOf { it.quantity }
@@ -105,22 +108,61 @@ class CartActivity : AppCompatActivity() {
         return sharedPreferences.getInt(BASKET_COUNTER, 0)
     }
 
-    private fun orderPost(id: String?, orderList: JSONObject, file: File) {
+    private fun orderPost(sharedPreferences: SharedPreferences, orderList: OrderList, file: File) {
         val queue = Volley.newRequestQueue(this)
         val url = "http://test.api.catering.bluecodegames.com/user/order"
+        val id = sharedPreferences.getString(ID, "0")
         val dataPost = JSONObject().let {
             it.put("id_shop", "1")
             it.put("id_user", id)
-            it.put("msg", orderList)
+            it.put("msg", orderList.toString())
         }
 
         val request = JsonObjectRequest(Request.Method.POST, url, dataPost, {
             Log.d("response", it.toString())
+            binding.orderLoader.isVisible = false
+            binding.recyclerViewCart.isVisible = true
+
+            Toast.makeText(this, "Merci de votre commande", Toast.LENGTH_LONG).show()
+
+            sharedPreferences.edit().apply {
+                putInt(BASKET_COUNTER, 0)
+            }.apply()
             file.delete()
+            binding.recyclerViewCart.adapter?.notifyDataSetChanged()
+            invalidateOptionsMenu()
+
         }) { error ->
             error.printStackTrace()
+            Toast.makeText(this,
+                "Restaurant temporairement fermé, veuillez réessayez plus tard",
+                Toast.LENGTH_LONG).show()
         }
         queue.add(request)
     }
+
+
+//    private fun checkPreviousOrders(user_id: Int) {
+//        val postUrl = "http://test.api.catering.bluecodegames.com/listorders"
+//        val queue = Volley.newRequestQueue(this)
+//        val postData = JSONObject()
+//        try {
+//            postData.put("id_shop", "1")
+//            postData.put("id_user", user_id)
+//        } catch (e: JSONException) {
+//            e.printStackTrace()
+//        }
+//        val request = JsonObjectRequest(
+//            Request.Method.POST,
+//            postUrl,
+//            postData,
+//            { response ->
+//                Log.i("Test ", "" + response)
+//            },
+//            { error ->
+//                error.printStackTrace()
+//            })
+//        queue.add(request)
+//    }
 
 }
