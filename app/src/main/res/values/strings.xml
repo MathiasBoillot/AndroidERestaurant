@@ -45,4 +45,10 @@
     <string name="success_order">Commande envoyé avec succès</string>
     <string name="order_success_description">Nous allons nous occuper de votre commande le plus rapidement possible</string>
     <string name="success_order_title">Ô Ptit Monde vous remercie</string>
+    <string name="success_transaction_number">Numéro de transaction : 43526981</string>
+    <string name="success_total_order">MONTANT TOTAL</string>
+    <string name="success_order_paid_by">PAYÉ PAR</string>
+    <string name="paypal">PAYPAL</string>
+    <string name="random_price">45.50€</string>
+    <string name="success_order_image">Success order image</string>
 </resources>
