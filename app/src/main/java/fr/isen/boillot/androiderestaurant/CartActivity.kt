@@ -3,18 +3,25 @@ package fr.isen.boillot.androiderestaurant
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.widget.TextView
+import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.android.volley.Request
+import com.android.volley.toolbox.JsonObjectRequest
+import com.android.volley.toolbox.Volley
 import com.google.gson.Gson
 import fr.isen.boillot.androiderestaurant.BaseActivity.Companion.BASKET_COUNTER
 import fr.isen.boillot.androiderestaurant.BaseActivity.Companion.FILE_ORDER
 import fr.isen.boillot.androiderestaurant.BaseActivity.Companion.FILE_PREF
+import fr.isen.boillot.androiderestaurant.BaseActivity.Companion.ID
 import fr.isen.boillot.androiderestaurant.adapters.CartAdapter
 import fr.isen.boillot.androiderestaurant.databinding.ActivityCartBinding
 import fr.isen.boillot.androiderestaurant.model.Order
 import fr.isen.boillot.androiderestaurant.model.OrderList
+import org.json.JSONObject
 import java.io.File
 
 class CartActivity : AppCompatActivity() {
@@ -41,7 +48,19 @@ class CartActivity : AppCompatActivity() {
         }
 
         binding.totalPriceOrder.setOnClickListener {
-            startActivity(Intent(this, RegisterActivity::class.java))
+            val sharedPreference = getSharedPreferences(FILE_PREF, MODE_PRIVATE)
+            val id = sharedPreference.getString(ID, "0")
+
+            if (id == "0") {
+                startActivity(Intent(this, RegisterActivity::class.java))
+            } else {
+                if (file.exists()) {
+                    val orderList = Gson().fromJson(file.readText(), JSONObject::class.java)
+                    orderPost(id, orderList, file)
+                    Toast.makeText(this, "Merci de votre commande", Toast.LENGTH_LONG).show()
+                }
+                Toast.makeText(this, "Panier vide", Toast.LENGTH_LONG).show()
+            }
         }
     }
 
@@ -84,6 +103,24 @@ class CartActivity : AppCompatActivity() {
     private fun getItemsCount(): Int {
         val sharedPreferences = getSharedPreferences(FILE_PREF, MODE_PRIVATE)
         return sharedPreferences.getInt(BASKET_COUNTER, 0)
+    }
+
+    private fun orderPost(id: String?, orderList: JSONObject, file: File) {
+        val queue = Volley.newRequestQueue(this)
+        val url = "http://test.api.catering.bluecodegames.com/user/order"
+        val dataPost = JSONObject().let {
+            it.put("id_shop", "1")
+            it.put("id_user", id)
+            it.put("msg", orderList)
+        }
+
+        val request = JsonObjectRequest(Request.Method.POST, url, dataPost, {
+            Log.d("response", it.toString())
+            file.delete()
+        }) { error ->
+            error.printStackTrace()
+        }
+        queue.add(request)
     }
 
 }

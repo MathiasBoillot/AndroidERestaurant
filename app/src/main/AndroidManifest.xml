@@ -16,9 +16,7 @@
         tools:targetApi="m">
         <activity android:name=".SignInActivity" />
         <activity android:name=".RegisterActivity" />
-        <activity android:name=".adapters.CartAdapter" />
         <activity android:name=".CartActivity" />
-        <activity android:name=".adapters.ViewPagerAdapter" />
         <activity android:name=".DetailActivity">
 
             <!-- android:parentActivityName=".ListActivity" -->

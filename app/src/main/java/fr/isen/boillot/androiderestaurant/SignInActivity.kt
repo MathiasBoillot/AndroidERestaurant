@@ -31,6 +31,7 @@ class SignInActivity : AppCompatActivity() {
         }
 
         binding.registerSwitch.setOnClickListener {
+
             startActivity(Intent(this, RegisterActivity::class.java))
         }
 
@@ -66,6 +67,7 @@ class SignInActivity : AppCompatActivity() {
             sharedPreference.edit().apply {
                 putString(BaseActivity.ID, jsonResult.data.id)
             }.apply()
+            startActivity(Intent(this, CartActivity::class.java))
         }) {
                 error -> error.printStackTrace()
         }

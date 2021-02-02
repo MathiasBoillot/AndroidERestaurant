@@ -61,6 +61,7 @@ class RegisterActivity : AppCompatActivity() {
 
         val request = JsonObjectRequest(Request.Method.POST, url, dataPost, {
             Log.d("response", it.toString())
+            startActivity(Intent(this, CartActivity::class.java))
         }) {
                 error -> error.printStackTrace()
         }
