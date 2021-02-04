@@ -51,9 +51,10 @@
     <string name="paypal">PAYPAL</string>
     <string name="random_price">45.50€</string>
     <string name="success_order_image">Success order image</string>
-    <string name="back_homepage" >Retour à l\'accueil</string>
+    <string name="back_homepage">Retour à l\'accueil</string>
     <string name="add_cart">Ajouter au panier</string>
     <string name="payment_denied">PAIEMENT REJETÉ</string>
     <string name="back_order">Revenir au panier</string>
     <string name="erreur_code">Une erreur est survenue, veuillez réessayer plus tard</string>
+    <string name="badge_status">Badge status de connexion</string>
 </resources>

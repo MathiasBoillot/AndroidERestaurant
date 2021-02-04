@@ -25,7 +25,7 @@ import fr.isen.boillot.androiderestaurant.model.OrderList
 import org.json.JSONObject
 import java.io.File
 
-class CartActivity : AppCompatActivity() {
+class CartActivity : BaseActivity() {
 
     private lateinit var binding: ActivityCartBinding
 
@@ -93,21 +93,21 @@ class CartActivity : AppCompatActivity() {
         }.apply()
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.basket_menu, menu)
-        val menuView = menu?.findItem(R.id.show_basket)?.actionView
-        val countText = menuView?.findViewById(R.id.nbItems) as? TextView
-
-        countText?.isVisible = getItemsCount() > 0
-        countText?.text = getItemsCount().toString()
-
-        return true
-    }
-
-    private fun getItemsCount(): Int {
-        val sharedPreferences = getSharedPreferences(FILE_PREF, MODE_PRIVATE)
-        return sharedPreferences.getInt(BASKET_COUNTER, 0)
-    }
+//    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+//        menuInflater.inflate(R.menu.basket_menu, menu)
+//        val menuView = menu?.findItem(R.id.show_basket)?.actionView
+//        val countText = menuView?.findViewById(R.id.nbItems) as? TextView
+//
+//        countText?.isVisible = getItemsCount() > 0
+//        countText?.text = getItemsCount().toString()
+//
+//        return true
+//    }
+//
+//    private fun getItemsCount(): Int {
+//        val sharedPreferences = getSharedPreferences(FILE_PREF, MODE_PRIVATE)
+//        return sharedPreferences.getInt(BASKET_COUNTER, 0)
+//    }
 
     private fun orderPost(sharedPreferences: SharedPreferences, orderList: OrderList, file: File) {
         val queue = Volley.newRequestQueue(this)
@@ -127,16 +127,22 @@ class CartActivity : AppCompatActivity() {
             sharedPreferences.edit().apply {
                 putInt(BASKET_COUNTER, 0)
             }.apply()
+
+            val intent = Intent(this, SuccessOrderActivity::class.java)
+            intent.putExtra("price_paid", orderList.totalPriceOrder())
+
             file.delete()
             binding.recyclerViewCart.adapter?.notifyDataSetChanged()
             invalidateOptionsMenu()
-            startActivity(Intent(this, SuccessOrderActivity::class.java))
+
+            startActivity(intent)
 
         }) { error ->
             error.printStackTrace()
             Toast.makeText(this,
                 "Restaurant temporairement fermé, veuillez réessayez plus tard",
                 Toast.LENGTH_LONG).show()
+
             startActivity(Intent(this, ErrorOrderActivity::class.java))
 
         }

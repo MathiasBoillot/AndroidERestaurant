@@ -16,8 +16,12 @@ class SuccessOrderActivity : AppCompatActivity() {
         binding = ActivitySuccessOrderBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.backHome.setOnClickListener {
+        val price = intent.getStringExtra("price_paid")
+
+        binding.backHomeSuccess.setOnClickListener {
             startActivity(Intent(this, HomeActivity::class.java))
         }
+
+        binding.priceOrderSuccess.text = price
     }
 }

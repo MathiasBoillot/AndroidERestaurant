@@ -7,9 +7,11 @@ import androidx.appcompat.app.AppCompatActivity
 import com.android.volley.Request
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
+import com.google.gson.Gson
 import fr.isen.boillot.androiderestaurant.databinding.ActivityRegisterBinding
 import fr.isen.boillot.androiderestaurant.login.RegisterFormData
 import fr.isen.boillot.androiderestaurant.login.LoginViewModel
+import fr.isen.boillot.androiderestaurant.model.UserResult
 import org.json.JSONObject
 
 
@@ -61,9 +63,17 @@ class RegisterActivity : AppCompatActivity() {
 
         val request = JsonObjectRequest(Request.Method.POST, url, dataPost, {
             Log.d("response", it.toString())
+            val jsonResult: UserResult = Gson().fromJson(
+                it.toString(),
+                UserResult::class.java
+            )
+            val sharedPreference = getSharedPreferences(BaseActivity.FILE_PREF, MODE_PRIVATE)
+            sharedPreference.edit().apply {
+                putString(BaseActivity.ID, jsonResult.data.id)
+            }.apply()
             startActivity(Intent(this, CartActivity::class.java))
-        }) {
-                error -> error.printStackTrace()
+        }) { error ->
+            error.printStackTrace()
         }
         queue.add(request)
     }

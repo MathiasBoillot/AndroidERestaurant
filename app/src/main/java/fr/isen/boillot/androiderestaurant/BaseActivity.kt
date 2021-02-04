@@ -5,6 +5,7 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.view.Menu
 import android.view.View
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
@@ -15,14 +16,29 @@ open class BaseActivity : AppCompatActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.basket_menu, menu)
-        val menuView = (menu?.findItem(R.id.show_basket)?.actionView).apply {
+        val cartView = (menu?.findItem(R.id.show_basket)?.actionView).apply {
             setupBadge(this)
         }
 
+        val userView = (menu?.findItem(R.id.show_user_account)?.actionView)
 
-        menuView?.setOnClickListener {
+
+        cartView?.setOnClickListener {
             startActivity(Intent(this, CartActivity::class.java))
         }
+
+        userView?.setOnClickListener {
+            startActivity(Intent(this, UserAccountActivity::class.java))
+        }
+
+        val sharedPreferences: SharedPreferences =
+            getSharedPreferences(FILE_PREF, Context.MODE_PRIVATE)
+        if(sharedPreferences.getString(ID, "0") != "0")
+            userView?.findViewById<ImageView>(R.id.user_status)?.setImageResource(R.drawable.badge_status_connected)
+        else
+            userView?.findViewById<ImageView>(R.id.user_status)?.setImageResource(R.drawable.badge_status_disconnected)
+        invalidateOptionsMenu()
+
 
 
         return super.onCreateOptionsMenu(menu)
@@ -39,6 +55,11 @@ open class BaseActivity : AppCompatActivity() {
             counter?.text = quantity.toString()
             counter?.isVisible = true
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        invalidateOptionsMenu()
     }
 
     companion object {

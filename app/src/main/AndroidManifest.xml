@@ -14,20 +14,21 @@
         android:theme="@style/Theme.AndroidERestaurant"
         android:usesCleartextTraffic="true"
         tools:targetApi="m">
-        <activity android:name=".ErrorOrderActivity"></activity>
-        <activity android:name=".SuccessOrderActivity" />
-        <activity android:name=".SignInActivity" />
-        <activity android:name=".RegisterActivity" />
-        <activity android:name=".CartActivity" />
-        <activity android:name=".DetailActivity">
-
-            <!-- android:parentActivityName=".ListActivity" -->
-
-
-            <!-- <meta-data -->
-            <!-- android:name="android.support.PARENT_ACTIVITY" -->
-            <!-- android:value=".ListActivity" /> -->
+        <activity
+            android:name=".UserAccountActivity"
+            android:parentActivityName=".HomeActivity" />
+        <activity android:name=".ErrorOrderActivity"
+            android:parentActivityName=".HomeActivity"/>
+        <activity android:name=".SuccessOrderActivity"
+            android:parentActivityName=".HomeActivity"/>
+        <activity android:name=".SignInActivity"
+            android:parentActivityName=".HomeActivity" />
+        <activity android:name=".RegisterActivity"
+            android:parentActivityName=".HomeActivity"/>
+        <activity android:name=".CartActivity"
+            android:parentActivityName=".HomeActivity">
         </activity>
+        <activity android:name=".DetailActivity" />
         <activity
             android:name=".ListActivity"
             android:parentActivityName=".HomeActivity">

@@ -25,6 +25,7 @@ class ListActivity : BaseActivity() {
     private lateinit var linearLayoutManager: LinearLayoutManager
     private lateinit var binding: ActivityListBinding
     private lateinit var swipeRefreshLayout: SwipeRefreshLayout
+    private lateinit var category: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,7 +33,7 @@ class ListActivity : BaseActivity() {
         binding = ActivityListBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val category = intent.getStringExtra(CATEGORY)
+        category = intent.getStringExtra(CATEGORY).toString()
         title = category
         val messageTextView: TextView = binding.textView
         messageTextView.text = "Notre carte"
@@ -48,10 +49,9 @@ class ListActivity : BaseActivity() {
     }
 
     private fun postData(category: String?) {
-        val textView = findViewById<TextView>(R.id.text)
 
         // Instantiate the RequestQueue.
-        //val queue = Volley.newRequestQueue(this)
+        val queue = Volley.newRequestQueue(this)
         val url = "http://test.api.catering.bluecodegames.com/menu"
         val params = JSONObject()
         try {
@@ -59,16 +59,16 @@ class ListActivity : BaseActivity() {
         } catch (e: JSONException) {
             e.printStackTrace()
         }
-        // Instantiate the cache
-        val cache = DiskBasedCache(cacheDir, 4096 * 4096) // 2MB cap
-
-        // Set up the network to use HttpURLConnection as the HTTP client.
-        val network = BasicNetwork(HurlStack())
-
-        // Instantiate the RequestQueue with the cache and network. Start the queue.
-        val requestQueue = RequestQueue(cache, network).apply {
-            start()
-        }
+//        // Instantiate the cache
+//        val cache = DiskBasedCache(cacheDir, 4096 * 4096) // 2MB cap
+//
+//        // Set up the network to use HttpURLConnection as the HTTP client.
+//        val network = BasicNetwork(HurlStack())
+//
+//        // Instantiate the RequestQueue with the cache and network. Start the queue.
+//        val requestQueue = RequestQueue(cache, network).apply {
+//            start()
+//        }
 
         val stringRequest = JsonObjectRequest(Request.Method.POST, url, params,
             { it ->
@@ -81,17 +81,16 @@ class ListActivity : BaseActivity() {
                 } ?: run {
                     Log.e("ListActivity", "Pas de catégorie trouvée")
                 }
-                Log.d("data", gson.toString())
             }
         ) { error ->
             // Handle error
-            "ERROR: %s".format(error.toString()).also { textView.text = it }
+            error.printStackTrace()
         }
 
         // Reset the cache
         //requestQueue.cache.clear()
         // Add the request to the RequestQueue.
-        requestQueue.add(stringRequest)
+        queue.add(stringRequest)
     }
 
 
@@ -103,6 +102,7 @@ class ListActivity : BaseActivity() {
         binding.recyclerView.adapter = RecyclerAdapter(category) {
             val intent = Intent(this, DetailActivity::class.java)
             intent.putExtra(ITEM, it)
+            intent.putExtra(CATEGORY, category.toString())
             startActivity(intent)
         }
     }
@@ -112,5 +112,6 @@ class ListActivity : BaseActivity() {
         super.onResume()
         invalidateOptionsMenu()
     }
+
 }
 
