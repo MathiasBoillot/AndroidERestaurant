@@ -47,7 +47,7 @@ class DetailActivity : BaseActivity() {
             calculTotal(quantity, item)
         }
 
-        binding.totalDetail.setOnClickListener {
+        binding.addCart.setOnClickListener {
             createOrUpdateFile(item, quantity)
         }
     }

@@ -77,12 +77,26 @@
         app:layout_constraintTop_toBottomOf="@+id/detail_ingredient" />
 
     <Button
-        android:id="@+id/total_detail"
+        android:id="@+id/add_cart"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="48dp"
-        android:text="@string/total_cart"
+        android:backgroundTint="@color/primary_orange"
+        android:text="@string/add_cart"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/total_detail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:text="@string/total_cart"
+        android:textColor="@color/primary_orange"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/add_cart"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 

@@ -14,7 +14,8 @@
         android:theme="@style/Theme.AndroidERestaurant"
         android:usesCleartextTraffic="true"
         tools:targetApi="m">
-        <activity android:name=".SuccessOrderActivity"></activity>
+        <activity android:name=".ErrorOrderActivity"></activity>
+        <activity android:name=".SuccessOrderActivity" />
         <activity android:name=".SignInActivity" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".CartActivity" />

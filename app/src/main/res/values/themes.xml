@@ -2,7 +2,7 @@
     <!-- Base application theme. -->
     <style name="Theme.AndroidERestaurant" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">#B0FFAC43</item>
+        <item name="colorPrimary">#D9FFAC43</item>
         <item name="colorPrimaryVariant">#FFD740</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->

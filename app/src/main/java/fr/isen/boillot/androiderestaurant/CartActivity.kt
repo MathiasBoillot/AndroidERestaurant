@@ -59,6 +59,7 @@ class CartActivity : AppCompatActivity() {
                     binding.recyclerViewCart.isVisible = false
                     val orderList = Gson().fromJson(file.readText(), OrderList::class.java)
                     orderPost(sharedPreference, orderList, file)
+
                 } else {
                     Toast.makeText(this, "Panier vide", Toast.LENGTH_LONG).show()
                 }
@@ -123,20 +124,21 @@ class CartActivity : AppCompatActivity() {
             binding.orderLoader.isVisible = false
             binding.recyclerViewCart.isVisible = true
 
-            Toast.makeText(this, "Merci de votre commande", Toast.LENGTH_LONG).show()
-
             sharedPreferences.edit().apply {
                 putInt(BASKET_COUNTER, 0)
             }.apply()
             file.delete()
             binding.recyclerViewCart.adapter?.notifyDataSetChanged()
             invalidateOptionsMenu()
+            startActivity(Intent(this, SuccessOrderActivity::class.java))
 
         }) { error ->
             error.printStackTrace()
             Toast.makeText(this,
                 "Restaurant temporairement fermé, veuillez réessayez plus tard",
                 Toast.LENGTH_LONG).show()
+            startActivity(Intent(this, ErrorOrderActivity::class.java))
+
         }
         queue.add(request)
     }
