@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 import com.android.volley.Request
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
@@ -33,6 +34,8 @@ class RegisterActivity : AppCompatActivity() {
         binding.signInSwitch.setOnClickListener {
             startActivity(Intent(this, SignInActivity::class.java))
         }
+
+
     }
 
     override fun onUserInteraction() {
@@ -45,8 +48,29 @@ class RegisterActivity : AppCompatActivity() {
             address = binding.registerAddress.text.toString(),
             password = binding.registerPassword.text.toString()
         )
+        loginViewModel.loginFormState.observe(this@RegisterActivity, Observer {
+            val loginState = it ?: return@Observer
 
-        binding.signInBtn.isEnabled = loginViewModel.registerDataChanged(dataForm)
+            // disable login button unless both username / password is valid
+            binding.signInBtn.isEnabled = loginState.isDataValid
+
+            if (loginState.firstNameError != null) {
+                binding.registerFirstname.error = getString(loginState.firstNameError)
+            }
+            if (loginState.lastNameError != null) {
+                binding.registerLastname.error = getString(loginState.lastNameError)
+            }
+            if (loginState.emailError != null) {
+                binding.registerEmail.error = getString(loginState.emailError)
+            }
+            if (loginState.addressError != null) {
+                binding.registerAddress.error = getString(loginState.addressError)
+            }
+            if (loginState.passwordError != null) {
+                binding.registerPassword.error = getString(loginState.passwordError)
+            }
+        })
+        loginViewModel.registerDataChanged(dataForm)
     }
 
     private fun createAccount() {

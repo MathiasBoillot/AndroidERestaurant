@@ -1,4 +1,4 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <string name="app_name">Ô PTIT MONDE</string>
     <string name="catch_phrase">Une petite faim ?</string>
     <string name="button_starter">Entrées</string>
@@ -8,7 +8,6 @@
     <string name="logo_description">logo app</string>
     <string name="bg_home_description">background home page</string>
     <string name="our_card">Notre carte</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="less_button">Value less</string>
     <string name="more_button">value more</string>
@@ -31,12 +30,12 @@
     <string name="action_sign_up">Créer un compte</string>
     <string name="action_sign_in_short">Sign in</string>
     <string name="welcome">"Welcome !"</string>
-    <string name="invalid_email">Not a valid email</string>
-    <string name="invalid_firstName">Not a valid firstName</string>
-    <string name="invalid_lastName">Not a valid lastName</string>
-    <string name="invalid_address">Not a valid address</string>
-    <string name="invalid_password">Password must be >5 characters</string>
-    <string name="login_failed">"Login failed"</string>
+    <string name="invalid_email">Email invalide</string>
+    <string name="invalid_firstName">Prénom invalide</string>
+    <string name="invalid_lastName">Nom invalide</string>
+    <string name="invalid_address">Adresse invalide</string>
+    <string name="invalid_password">Mot de passe doit contenir 12 caractères dont au moins 1 minuscule, 1 majuscule, 1 chiffre et 1 caractère spécial</string>
+    <string name="login_failed">Authentification échoué</string>
     <string name="prompt_firstname">Prénom</string>
     <string name="prompt_lastname">Nom</string>
     <string name="prompt_address">Adresse</string>

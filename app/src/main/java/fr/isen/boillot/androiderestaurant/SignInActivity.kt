@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.lifecycle.Observer
 import com.android.volley.Request
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
@@ -43,8 +44,17 @@ class SignInActivity : AppCompatActivity() {
             email = binding.loginEmail.text.toString(),
             password = binding.loginPassword.text.toString()
         )
+        loginViewModel.loginFormState.observe(this@SignInActivity, Observer {
+            val loginState = it ?: return@Observer
 
-        binding.loginBtn.isEnabled = loginViewModel.signInDataChanged(dataForm)
+            // disable login button unless both username / password is valid
+            binding.loginBtn.isEnabled = loginState.isDataValid
+
+            if (loginState.emailError != null) {
+                binding.loginEmail.error = getString(loginState.emailError)
+            }
+        })
+        loginViewModel.signInDataChanged(dataForm)
     }
 
     private fun signInAccount() {
