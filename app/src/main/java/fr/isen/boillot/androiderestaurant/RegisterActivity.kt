@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import com.android.volley.Request
 import com.android.volley.toolbox.JsonObjectRequest
@@ -97,7 +98,7 @@ class RegisterActivity : AppCompatActivity() {
             }.apply()
             startActivity(Intent(this, CartActivity::class.java))
         }) { error ->
-            error.printStackTrace()
+            binding.registerError.isVisible = true
         }
         queue.add(request)
     }
