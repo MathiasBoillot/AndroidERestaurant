@@ -44,7 +44,7 @@
             </androidx.recyclerview.widget.RecyclerView>
 
             <TextView
-                android:id="@+id/total_price_order"
+                android:id="@+id/totalPriceOrder"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:background="#B0FFAC43"
@@ -59,12 +59,12 @@
                 app:layout_constraintStart_toStartOf="parent" />
 
             <ProgressBar
-                android:id="@+id/order_loader"
+                android:id="@+id/orderLoader"
                 style="?android:attr/progressBarStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:visibility="invisible"
-                app:layout_constraintBottom_toBottomOf="@+id/total_price_order"
+                app:layout_constraintBottom_toBottomOf="@+id/totalPriceOrder"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />

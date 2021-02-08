@@ -1,11 +1,13 @@
 package fr.isen.boillot.androiderestaurant.fragment
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.squareup.picasso.Picasso
+import fr.isen.boillot.androiderestaurant.R
 import fr.isen.boillot.androiderestaurant.databinding.FragmentDetailBinding
 
 class DetailFragment : Fragment() {
@@ -24,8 +26,8 @@ class DetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        arguments?.getString("URL").let {
-            Picasso.get().load(it).into(binding.fragmentImage)
+    arguments?.getString("URL").let {
+            Picasso.get().load(it).placeholder(R.drawable.pick_go).into(binding.fragmentImage)
         }
     }
 
@@ -35,6 +37,5 @@ class DetailFragment : Fragment() {
                 arguments = Bundle().apply { putString("URL", picture) }
             }
         }
-
     }
 }

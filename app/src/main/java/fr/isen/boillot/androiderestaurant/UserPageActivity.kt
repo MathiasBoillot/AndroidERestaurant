@@ -37,7 +37,7 @@ class UserPageActivity : AppCompatActivity() {
         if( userId != "0") {
             userId?.let { checkPreviousOrders(it.toInt()) }
             binding.logout.setOnClickListener {
-                sharedPreferences.edit().remove(ID).commit()
+                sharedPreferences.edit().remove(ID).apply()
                 startActivity(Intent(this, HomeActivity::class.java))
             }
         } else {
@@ -45,7 +45,6 @@ class UserPageActivity : AppCompatActivity() {
             binding.logout.setOnClickListener {
                 startActivity(Intent(this, SignInActivity::class.java))
             }
-
         }
     }
 
@@ -69,7 +68,7 @@ class UserPageActivity : AppCompatActivity() {
                 val jsonResult: PreviousOrderList = Gson().fromJson(response.toString(),
                     PreviousOrderList::class.java
                 )
-                jsonResult.data?.let {
+                jsonResult.data.let {
                     binding.userRecyclerView.adapter = UserHistoryAdapter(it, this)
                     Log.d("Coucou", "coucou")
                 }

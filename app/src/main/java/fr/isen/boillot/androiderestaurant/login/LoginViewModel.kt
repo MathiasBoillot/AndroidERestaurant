@@ -43,11 +43,9 @@ class LoginViewModel() : ViewModel() {
     fun signInDataChanged(dataForm: SignInFormData): Boolean {
         return if (!isEmailValid(dataForm.email)) {
             _loginForm.value = LoginFormState(emailError = R.string.invalid_email)
-            Log.i("Value email", dataForm.email)
             false
         } else if (!isPasswordValid(dataForm.password)) {
             _loginForm.value = LoginFormState(passwordError = R.string.invalid_password)
-            Log.i("Value password", dataForm.password)
             false
         } else {
             _loginForm.value = LoginFormState(isDataValid = true)

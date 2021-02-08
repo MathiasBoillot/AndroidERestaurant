@@ -19,7 +19,7 @@
             android:layout_height="match_parent">
 
             <ImageView
-                android:id="@+id/item_pic"
+                android:id="@+id/itemPic"
                 android:layout_width="130dp"
                 android:layout_height="0dp"
                 android:contentDescription="@string/item_image_order"
@@ -29,7 +29,7 @@
                 app:layout_constraintVertical_bias="1.0" />
 
             <TextView
-                android:id="@+id/item_price_total"
+                android:id="@+id/itemPriceTotal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -41,11 +41,11 @@
                 android:textSize="14sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/item_pic"
-                app:layout_constraintTop_toBottomOf="@+id/item_quantity" />
+                app:layout_constraintEnd_toStartOf="@+id/itemPic"
+                app:layout_constraintTop_toBottomOf="@+id/itemQuantity" />
 
             <TextView
-                android:id="@+id/item_name"
+                android:id="@+id/itemName"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -59,7 +59,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/item_quantity"
+                android:id="@+id/itemQuantity"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -69,10 +69,10 @@
                 android:textColor="#4C4C4C"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/item_name" />
+                app:layout_constraintTop_toBottomOf="@+id/itemName" />
 
             <ImageView
-                android:id="@+id/delete_item"
+                android:id="@+id/itemDelete"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_marginStart="16dp"

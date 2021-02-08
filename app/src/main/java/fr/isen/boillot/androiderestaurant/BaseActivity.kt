@@ -34,9 +34,9 @@ open class BaseActivity : AppCompatActivity() {
         val sharedPreferences: SharedPreferences =
             getSharedPreferences(FILE_PREF, Context.MODE_PRIVATE)
         if(sharedPreferences.getString(ID, "0") != "0")
-            userView?.findViewById<ImageView>(R.id.user_status)?.setImageResource(R.drawable.badge_status_connected)
+            userView?.findViewById<ImageView>(R.id.userStatus)?.setImageResource(R.drawable.badge_status_connected)
         else
-            userView?.findViewById<ImageView>(R.id.user_status)?.setImageResource(R.drawable.badge_status_disconnected)
+            userView?.findViewById<ImageView>(R.id.userStatus)?.setImageResource(R.drawable.badge_status_disconnected)
         invalidateOptionsMenu()
 
 
@@ -69,7 +69,6 @@ open class BaseActivity : AppCompatActivity() {
         const val ITEM = "item"
         const val CATEGORY = "category_key"
         const val ID = "user_id"
-
     }
 
 }

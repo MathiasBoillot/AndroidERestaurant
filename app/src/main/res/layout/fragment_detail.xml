@@ -6,7 +6,7 @@
     tools:context=".fragment.DetailFragment">
 
     <ImageView
-        android:id="@+id/fragment_image"
+        android:id="@+id/fragmentImage"
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:contentDescription="@string/image_list_dish"

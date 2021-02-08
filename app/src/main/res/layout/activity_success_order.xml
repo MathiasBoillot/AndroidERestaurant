@@ -7,17 +7,17 @@
     tools:context=".SuccessOrderActivity">
 
     <ImageView
-        android:id="@+id/img_success"
+        android:id="@+id/imgSuccess"
         android:layout_width="366dp"
         android:layout_height="248dp"
         android:contentDescription="@string/success_order_image"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title_success"
+        app:layout_constraintTop_toBottomOf="@+id/titleSuccess"
         app:srcCompat="@drawable/checkmark1" />
 
     <TextView
-        android:id="@+id/h1_success"
+        android:id="@+id/h1Success"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
@@ -28,10 +28,10 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/img_success" />
+        app:layout_constraintTop_toBottomOf="@+id/imgSuccess" />
 
     <TextView
-        android:id="@+id/desc_success"
+        android:id="@+id/descSuccess"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="56dp"
@@ -42,10 +42,10 @@
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/h1_success" />
+        app:layout_constraintTop_toBottomOf="@+id/h1Success" />
 
     <TextView
-        android:id="@+id/title_success"
+        android:id="@+id/titleSuccess"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
@@ -59,7 +59,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <View
-        android:id="@+id/separator1_success"
+        android:id="@+id/separator1Success"
         android:layout_width="match_parent"
         android:layout_height="0.1dp"
         android:layout_marginStart="24dp"
@@ -69,10 +69,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/desc_success" />
+        app:layout_constraintTop_toBottomOf="@+id/descSuccess" />
 
     <TextView
-        android:id="@+id/nb_transaction_success"
+        android:id="@+id/nbTransactionSuccess"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -82,10 +82,10 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/separator1_success" />
+        app:layout_constraintTop_toBottomOf="@+id/separator1Success" />
 
     <TextView
-        android:id="@+id/text1_success"
+        android:id="@+id/text1Success"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -96,10 +96,10 @@
         android:textSize="12sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nb_transaction_success" />
+        app:layout_constraintTop_toBottomOf="@+id/nbTransactionSuccess" />
 
     <TextView
-        android:id="@+id/text2_success"
+        android:id="@+id/text2Success"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -109,10 +109,10 @@
         android:textSize="12sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/separator2_success" />
+        app:layout_constraintTop_toBottomOf="@+id/separator2Success" />
 
     <TextView
-        android:id="@+id/payment_method_success"
+        android:id="@+id/paymentMethodSuccess"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -122,10 +122,10 @@
         android:textSize="12sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/separator2_success" />
+        app:layout_constraintTop_toBottomOf="@+id/separator2Success" />
 
     <TextView
-        android:id="@+id/price_order_success"
+        android:id="@+id/priceOrderSuccess"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
@@ -135,10 +135,10 @@
         android:textSize="12sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nb_transaction_success" />
+        app:layout_constraintTop_toBottomOf="@+id/nbTransactionSuccess" />
 
     <View
-        android:id="@+id/separator2_success"
+        android:id="@+id/separator2Success"
         android:layout_width="match_parent"
         android:layout_height="0.1dp"
         android:layout_marginStart="24dp"
@@ -148,10 +148,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text1_success" />
+        app:layout_constraintTop_toBottomOf="@+id/text1Success" />
 
     <Button
-        android:id="@+id/back_home_success"
+        android:id="@+id/backHomeSuccess"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
@@ -163,6 +163,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/separator2_success" />
+        app:layout_constraintTop_toBottomOf="@+id/separator2Success" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

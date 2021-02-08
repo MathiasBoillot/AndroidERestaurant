@@ -6,16 +6,14 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.google.gson.Gson
-import fr.isen.boillot.androiderestaurant.databinding.ItemUserAccountBinding
+import fr.isen.boillot.androiderestaurant.databinding.ItemUserPageBinding
 import fr.isen.boillot.androiderestaurant.model.Message
-import fr.isen.boillot.androiderestaurant.model.Order
 import fr.isen.boillot.androiderestaurant.model.OrderList
-import fr.isen.boillot.androiderestaurant.model.PreviousOrderList
 
 class UserHistoryAdapter(private val data: List<Message>, private val ct: Context) :
     RecyclerView.Adapter<UserHistoryAdapter.HistoryHolder>() {
 
-    class HistoryHolder(binding: ItemUserAccountBinding) : RecyclerView.ViewHolder(binding.root) {
+    class HistoryHolder(binding: ItemUserPageBinding) : RecyclerView.ViewHolder(binding.root) {
         val title = binding.title
     }
 
@@ -24,7 +22,7 @@ class UserHistoryAdapter(private val data: List<Message>, private val ct: Contex
         viewType: Int,
     ): HistoryHolder {
         val itemBinding =
-            ItemUserAccountBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            ItemUserPageBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return HistoryHolder(itemBinding)
     }
 

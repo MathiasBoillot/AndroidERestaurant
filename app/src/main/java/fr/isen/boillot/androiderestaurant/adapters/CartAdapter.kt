@@ -22,7 +22,7 @@ class CartAdapter(
         val itemPrice = binding.itemPriceTotal
         val images = binding.itemPic
         val itemQuantity = binding.itemQuantity
-        val deleteItem = binding.deleteItem
+        val deleteItem = binding.itemDelete
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CartHolder {

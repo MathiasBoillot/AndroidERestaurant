@@ -31,7 +31,6 @@ class SignInActivity : AppCompatActivity() {
         }
 
         binding.registerSwitch.setOnClickListener {
-
             startActivity(Intent(this, RegisterActivity::class.java))
         }
 

@@ -6,7 +6,7 @@
     android:layout_height="wrap_content">
 
     <ImageView
-        android:id="@+id/user_logo"
+        android:id="@+id/userLogo"
         android:layout_width="52dp"
         android:layout_height="53dp"
         android:layout_marginStart="8dp"
@@ -19,7 +19,7 @@
         app:srcCompat="@drawable/ic_baseline_person_24" />
 
     <ImageView
-        android:id="@+id/user_status"
+        android:id="@+id/userStatus"
         android:layout_width="24dp"
         android:layout_height="24dp"
         android:contentDescription="@string/badge_status"
