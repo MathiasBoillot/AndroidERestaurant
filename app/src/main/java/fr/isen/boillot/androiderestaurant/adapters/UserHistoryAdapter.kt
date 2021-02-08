@@ -1,7 +1,6 @@
 package fr.isen.boillot.androiderestaurant.adapters
 
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -31,7 +30,6 @@ class UserHistoryAdapter(private val data: List<Message>, private val ct: Contex
         val orderCart = Gson().fromJson(data[position].message, OrderList::class.java) as OrderList
         for(c in orderCart.order){
             text += c.item.name + " x " + c.quantity
-            Log.d("text", text)
         }
         holder.title.text = text
     }

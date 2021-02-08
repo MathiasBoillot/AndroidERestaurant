@@ -5,7 +5,6 @@ import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.volley.Request
 import com.android.volley.toolbox.JsonObjectRequest
@@ -32,9 +31,9 @@ class UserPageActivity : AppCompatActivity() {
         binding.userRecyclerView.layoutManager = LinearLayoutManager(this)
 
         sharedPreferences = getSharedPreferences(BaseActivity.FILE_PREF, Context.MODE_PRIVATE)
-        val userId = sharedPreferences.getString(ID, "0")
+        val userId = sharedPreferences.getInt(ID, 0)
 
-        if( userId != "0") {
+        if( userId != 0) {
             userId?.let { checkPreviousOrders(it.toInt()) }
             binding.logout.setOnClickListener {
                 sharedPreferences.edit().remove(ID).apply()
@@ -64,15 +63,12 @@ class UserPageActivity : AppCompatActivity() {
             postUrl,
             postData,
             { response ->
-                Log.i("Test ", "" + response)
                 val jsonResult: PreviousOrderList = Gson().fromJson(response.toString(),
                     PreviousOrderList::class.java
                 )
                 jsonResult.data.let {
                     binding.userRecyclerView.adapter = UserHistoryAdapter(it, this)
-                    Log.d("Coucou", "coucou")
                 }
-                Log.i("JSON", jsonResult.toString())
             },
             { error ->
                 error.printStackTrace()

@@ -2,13 +2,13 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/show_user_account"
+        android:id="@+id/showUserAccount"
         android:icon="@drawable/ic_baseline_shopping_cart_24"
         android:title="@string/basket"
         app:actionLayout="@layout/user_badge"
         app:showAsAction="ifRoom" />
     <item
-        android:id="@+id/show_basket"
+        android:id="@+id/showBasket"
         android:icon="@drawable/ic_baseline_shopping_cart_24"
         android:title="@string/basket"
         app:actionLayout="@layout/cart_badge"

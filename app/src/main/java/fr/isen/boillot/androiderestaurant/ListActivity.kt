@@ -9,12 +9,12 @@ import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.android.volley.Request
-import com.android.volley.RequestQueue
-import com.android.volley.toolbox.*
+import com.android.volley.toolbox.JsonObjectRequest
+import com.android.volley.toolbox.Volley
 import com.google.gson.Gson
-import fr.isen.boillot.androiderestaurant.model.DataResult
 import fr.isen.boillot.androiderestaurant.adapters.RecyclerAdapter
 import fr.isen.boillot.androiderestaurant.databinding.ActivityListBinding
+import fr.isen.boillot.androiderestaurant.model.DataResult
 import fr.isen.boillot.androiderestaurant.model.Item
 import org.json.JSONException
 import org.json.JSONObject
@@ -25,7 +25,7 @@ class ListActivity : BaseActivity() {
     private lateinit var linearLayoutManager: LinearLayoutManager
     private lateinit var binding: ActivityListBinding
     private lateinit var swipeRefreshLayout: SwipeRefreshLayout
-    private lateinit var category: String
+    private var category: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,11 +39,11 @@ class ListActivity : BaseActivity() {
         messageTextView.text = "Notre carte"
 
         swipeRefreshLayout = binding.swipeRefresh
-        swipeRefreshLayout.setOnRefreshListener {
+        swipeRefreshLayout.setOnRefreshListener(fun() {
             Handler().postDelayed({
                 swipeRefreshLayout.isRefreshing = false
             }, 4000)
-        }
+        })
         postData(category)
 
     }

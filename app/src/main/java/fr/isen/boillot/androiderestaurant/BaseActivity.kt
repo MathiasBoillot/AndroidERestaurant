@@ -16,11 +16,11 @@ open class BaseActivity : AppCompatActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.basket_menu, menu)
-        val cartView = (menu?.findItem(R.id.show_basket)?.actionView).apply {
+        val cartView = (menu?.findItem(R.id.showBasket)?.actionView).apply {
             setupBadge(this)
         }
 
-        val userView = (menu?.findItem(R.id.show_user_account)?.actionView)
+        val userView = (menu?.findItem(R.id.showUserAccount)?.actionView)
 
 
         cartView?.setOnClickListener {
@@ -33,7 +33,7 @@ open class BaseActivity : AppCompatActivity() {
 
         val sharedPreferences: SharedPreferences =
             getSharedPreferences(FILE_PREF, Context.MODE_PRIVATE)
-        if(sharedPreferences.getString(ID, "0") != "0")
+        if(sharedPreferences.getInt(ID, 0) != 0)
             userView?.findViewById<ImageView>(R.id.userStatus)?.setImageResource(R.drawable.badge_status_connected)
         else
             userView?.findViewById<ImageView>(R.id.userStatus)?.setImageResource(R.drawable.badge_status_disconnected)

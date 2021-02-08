@@ -1,11 +1,10 @@
 package fr.isen.boillot.androiderestaurant.fragment
 
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import com.squareup.picasso.Picasso
 import fr.isen.boillot.androiderestaurant.R
 import fr.isen.boillot.androiderestaurant.databinding.FragmentDetailBinding

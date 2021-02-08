@@ -94,7 +94,7 @@ class RegisterActivity : AppCompatActivity() {
             )
             val sharedPreference = getSharedPreferences(BaseActivity.FILE_PREF, MODE_PRIVATE)
             sharedPreference.edit().apply {
-                putString(BaseActivity.ID, jsonResult.data.id)
+                putInt(BaseActivity.ID, jsonResult.data.id)
             }.apply()
             startActivity(Intent(this, CartActivity::class.java))
         }) { error ->

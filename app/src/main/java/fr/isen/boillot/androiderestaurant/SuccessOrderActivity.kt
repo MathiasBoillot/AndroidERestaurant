@@ -1,9 +1,8 @@
 package fr.isen.boillot.androiderestaurant
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import fr.isen.boillot.androiderestaurant.databinding.ActivitySignInBinding
+import androidx.appcompat.app.AppCompatActivity
 import fr.isen.boillot.androiderestaurant.databinding.ActivitySuccessOrderBinding
 
 class SuccessOrderActivity : AppCompatActivity() {

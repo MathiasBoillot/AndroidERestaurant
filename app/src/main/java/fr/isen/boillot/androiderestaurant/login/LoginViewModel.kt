@@ -1,6 +1,5 @@
 package fr.isen.boillot.androiderestaurant.login
 
-import android.util.Log
 import android.util.Patterns
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -8,7 +7,7 @@ import androidx.lifecycle.ViewModel
 import fr.isen.boillot.androiderestaurant.R
 
 
-class LoginViewModel() : ViewModel() {
+class LoginViewModel : ViewModel() {
     private val _loginForm = MutableLiveData<LoginFormState>()
     val loginFormState: LiveData<LoginFormState> = _loginForm
 
