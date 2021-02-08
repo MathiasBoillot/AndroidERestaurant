@@ -15,7 +15,7 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="m">
         <activity
-            android:name=".UserAccountActivity"
+            android:name=".UserPageActivity"
             android:parentActivityName=".HomeActivity" />
         <activity android:name=".ErrorOrderActivity"
             android:parentActivityName=".HomeActivity"/>

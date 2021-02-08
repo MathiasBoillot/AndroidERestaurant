@@ -28,7 +28,7 @@ open class BaseActivity : AppCompatActivity() {
         }
 
         userView?.setOnClickListener {
-            startActivity(Intent(this, UserAccountActivity::class.java))
+            startActivity(Intent(this, UserPageActivity::class.java))
         }
 
         val sharedPreferences: SharedPreferences =

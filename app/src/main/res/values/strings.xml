@@ -57,4 +57,6 @@
     <string name="back_order">Revenir au panier</string>
     <string name="erreur_code">Une erreur est survenue, veuillez réessayer plus tard</string>
     <string name="badge_status">Badge status de connexion</string>
+    <string name="logout">Se déconnecter</string>
+    <string name="account">Mon compte</string>
 </resources>

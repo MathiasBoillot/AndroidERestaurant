@@ -22,6 +22,9 @@ import fr.isen.boillot.androiderestaurant.adapters.CartAdapter
 import fr.isen.boillot.androiderestaurant.databinding.ActivityCartBinding
 import fr.isen.boillot.androiderestaurant.model.Order
 import fr.isen.boillot.androiderestaurant.model.OrderList
+import fr.isen.boillot.androiderestaurant.model.PreviousOrderList
+import fr.isen.boillot.androiderestaurant.model.UserResult
+import org.json.JSONException
 import org.json.JSONObject
 import java.io.File
 
@@ -32,6 +35,7 @@ class CartActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         binding = ActivityCartBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -59,7 +63,6 @@ class CartActivity : BaseActivity() {
                     binding.recyclerViewCart.isVisible = false
                     val orderList = Gson().fromJson(file.readText(), OrderList::class.java)
                     orderPost(sharedPreference, orderList, file)
-
                 } else {
                     Toast.makeText(this, "Panier vide", Toast.LENGTH_LONG).show()
                 }
@@ -116,7 +119,7 @@ class CartActivity : BaseActivity() {
         val dataPost = JSONObject().let {
             it.put("id_shop", "1")
             it.put("id_user", id)
-            it.put("msg", orderList.toString())
+            it.put("msg", Gson().toJson(orderList))
         }
 
         val request = JsonObjectRequest(Request.Method.POST, url, dataPost, {
@@ -150,27 +153,6 @@ class CartActivity : BaseActivity() {
     }
 
 
-//    private fun checkPreviousOrders(user_id: Int) {
-//        val postUrl = "http://test.api.catering.bluecodegames.com/listorders"
-//        val queue = Volley.newRequestQueue(this)
-//        val postData = JSONObject()
-//        try {
-//            postData.put("id_shop", "1")
-//            postData.put("id_user", user_id)
-//        } catch (e: JSONException) {
-//            e.printStackTrace()
-//        }
-//        val request = JsonObjectRequest(
-//            Request.Method.POST,
-//            postUrl,
-//            postData,
-//            { response ->
-//                Log.i("Test ", "" + response)
-//            },
-//            { error ->
-//                error.printStackTrace()
-//            })
-//        queue.add(request)
-//    }
+
 
 }
