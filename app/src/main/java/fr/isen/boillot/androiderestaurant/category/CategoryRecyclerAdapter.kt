@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import fr.isen.boillot.androiderestaurant.R
-import fr.isen.boillot.androiderestaurant.databinding.ItemRowBinding
+import fr.isen.boillot.androiderestaurant.databinding.ItemDishCategoryBinding
 import fr.isen.boillot.androiderestaurant.model.domain.Item
 
 class RecyclerAdapter(
@@ -14,7 +14,7 @@ class RecyclerAdapter(
 ) :
     RecyclerView.Adapter<RecyclerAdapter.CategoryHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryHolder {
-        val itemBinding = ItemRowBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val itemBinding = ItemDishCategoryBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return CategoryHolder(itemBinding)
     }
 
@@ -40,7 +40,7 @@ class RecyclerAdapter(
 
     override fun getItemCount(): Int = categories.size
 
-    class CategoryHolder(binding: ItemRowBinding) : RecyclerView.ViewHolder(binding.root) {
+    class CategoryHolder(binding: ItemDishCategoryBinding) : RecyclerView.ViewHolder(binding.root) {
         val title = binding.itemTitle
         val images = binding.itemPic
         val price = binding.itemPrice

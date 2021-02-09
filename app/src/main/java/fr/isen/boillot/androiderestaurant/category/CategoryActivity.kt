@@ -49,7 +49,7 @@ class CategoryActivity : BaseActivity() {
 
     private fun getItems(category: String?) {
 
-        resultFromCache()?.let {
+        getCache()?.let {
             parseResult(it, category)
         } ?: run {
 
@@ -68,7 +68,7 @@ class CategoryActivity : BaseActivity() {
             val stringRequest = JsonObjectRequest(Request.Method.POST, url, params,
                 { it ->
                     swipeRefreshLayout.isRefreshing = false
-                    cacheResult(it.toString())
+                    setCache(it.toString())
                     parseResult(it.toString(), category)
                 }
             ) { error ->
@@ -81,11 +81,16 @@ class CategoryActivity : BaseActivity() {
     }
 
 
-    private fun cacheResult(res: String) {
+    private fun setCache(res: String) {
         val sharedPreferences = getSharedPreferences(FILE_PREF, MODE_PRIVATE)
         sharedPreferences.edit().apply {
             putString(CACHE_CATEGORY, res)
         }.apply()
+    }
+
+    private fun getCache(): String? {
+        val sharedPreferences = getSharedPreferences(FILE_PREF, MODE_PRIVATE)
+        return sharedPreferences.getString(CACHE_CATEGORY, null)
     }
 
     private fun resetCache() {
@@ -94,12 +99,6 @@ class CategoryActivity : BaseActivity() {
             remove(CACHE_CATEGORY)
         }.apply()
     }
-
-    private fun resultFromCache(): String? {
-        val sharedPreferences = getSharedPreferences(FILE_PREF, MODE_PRIVATE)
-        return sharedPreferences.getString(CACHE_CATEGORY, null)
-    }
-
 
     private fun parseResult(res: String, selectedItem: String?) {
         val menuResult = GsonBuilder().create().fromJson(res, DataResult::class.java)
