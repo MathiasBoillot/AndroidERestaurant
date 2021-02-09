@@ -9,6 +9,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
+import fr.isen.boillot.androiderestaurant.cart.CartActivity
+import fr.isen.boillot.androiderestaurant.userPage.UserPageActivity
 
 open class BaseActivity : AppCompatActivity() {
     // Manage cart toolbar layout
@@ -69,6 +71,7 @@ open class BaseActivity : AppCompatActivity() {
         const val ITEM = "item"
         const val CATEGORY = "category_key"
         const val ID = "user_id"
+        const val CACHE_CATEGORY = "cache_category"
     }
 
 }

@@ -15,22 +15,22 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="m">
         <activity
-            android:name=".UserPageActivity"
+            android:name=".userPage.UserPageActivity"
             android:parentActivityName=".HomeActivity" />
-        <activity android:name=".ErrorOrderActivity"
+        <activity android:name=".cart.ErrorOrderActivity"
             android:parentActivityName=".HomeActivity"/>
-        <activity android:name=".SuccessOrderActivity"
+        <activity android:name=".cart.SuccessOrderActivity"
             android:parentActivityName=".HomeActivity"/>
-        <activity android:name=".SignInActivity"
+        <activity android:name=".registration.SignInActivity"
             android:parentActivityName=".HomeActivity" />
-        <activity android:name=".RegisterActivity"
+        <activity android:name=".registration.RegisterActivity"
             android:parentActivityName=".HomeActivity"/>
-        <activity android:name=".CartActivity"
+        <activity android:name=".cart.CartActivity"
             android:parentActivityName=".HomeActivity">
         </activity>
-        <activity android:name=".DetailActivity" />
+        <activity android:name=".detail.DetailActivity" />
         <activity
-            android:name=".ListActivity"
+            android:name=".category.CategoryActivity"
             android:parentActivityName=".HomeActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

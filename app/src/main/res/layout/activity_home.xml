@@ -52,7 +52,7 @@
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
-        android:backgroundTint="#D8FFAC43"
+        android:backgroundTint="@color/primary_orange"
         android:fontFamily="@font/kaushan_script"
         android:paddingTop="20dp"
         android:paddingBottom="20dp"

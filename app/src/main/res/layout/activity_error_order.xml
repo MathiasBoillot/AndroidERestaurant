@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FF5252"
-    tools:context=".ErrorOrderActivity">
+    tools:context=".cart.ErrorOrderActivity">
 
     <ImageView
         android:id="@+id/imageView"

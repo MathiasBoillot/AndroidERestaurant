@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.Toast
+import fr.isen.boillot.androiderestaurant.category.CategoryActivity
 import fr.isen.boillot.androiderestaurant.databinding.ActivityHomeBinding
 
 
@@ -33,7 +34,7 @@ class HomeActivity : BaseActivity() {
     }
 
     private fun displayListPage(id: Button) {
-        val intent = Intent(this, ListActivity::class.java)
+        val intent = Intent(this, CategoryActivity::class.java)
         intent.putExtra(CATEGORY, id.text.toString())
         startActivity(intent)
     }
