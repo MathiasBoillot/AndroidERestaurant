@@ -1,22 +1,19 @@
 # Ô Ptit Monde Android Application 
 
---- 
 
 This application was created for a small seaside restaurant. 
 
 
 ## How to install 
 
---- 
 
-* Download the [APK Ô Ptit Monde]()
+* Download the [APK Ô Ptit Monde](https://github.com/MathiasBoillot/AndroidERestaurant/blob/master/app/release/app-release.apk)
 * Install it on your phone
 * Make your order to eat your best meal 
 
 
 ## Features available
 
---- 
 
 * Register and Sign in for user
 * Updated order list
@@ -28,7 +25,6 @@ This application was created for a small seaside restaurant.
 
 ### User case
 
---- 
 
 * Compose your meal by clicking on the different categories
 * Add the quantity of the dishes
