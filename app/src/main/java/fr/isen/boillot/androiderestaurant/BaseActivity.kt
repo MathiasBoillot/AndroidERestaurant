@@ -35,10 +35,15 @@ open class BaseActivity : AppCompatActivity() {
 
         val sharedPreferences: SharedPreferences =
             getSharedPreferences(FILE_PREF, Context.MODE_PRIVATE)
-        if(sharedPreferences.getInt(ID, 0) != 0)
-            userView?.findViewById<ImageView>(R.id.userStatus)?.setImageResource(R.drawable.badge_status_connected)
+
+        // If user is connected -> Display green badge
+        if (sharedPreferences.getInt(ID, 0) != 0)
+            userView?.findViewById<ImageView>(R.id.userStatus)
+                ?.setImageResource(R.drawable.badge_status_connected)
+        // else user is disconnected -> Display red badge
         else
-            userView?.findViewById<ImageView>(R.id.userStatus)?.setImageResource(R.drawable.badge_status_disconnected)
+            userView?.findViewById<ImageView>(R.id.userStatus)
+                ?.setImageResource(R.drawable.badge_status_disconnected)
         invalidateOptionsMenu()
 
 
@@ -46,6 +51,9 @@ open class BaseActivity : AppCompatActivity() {
         return super.onCreateOptionsMenu(menu)
     }
 
+    /**
+     * Function to handle the badge and the counter of the cart
+     */
     private fun setupBadge(item: View?) {
         val counter = item?.findViewById<TextView>(R.id.nbItems)
         val sharedPreferences: SharedPreferences =
@@ -59,6 +67,9 @@ open class BaseActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * Override to invalid the options menu
+     */
     override fun onResume() {
         super.onResume()
         invalidateOptionsMenu()

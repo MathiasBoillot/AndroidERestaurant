@@ -34,6 +34,7 @@ class RegisterActivity : AppCompatActivity() {
             createAccount()
         }
 
+        // Switch to SignIn Activity if already account
         binding.signInSwitch.setOnClickListener {
             startActivity(Intent(this, SignInActivity::class.java))
         }
@@ -41,6 +42,11 @@ class RegisterActivity : AppCompatActivity() {
 
     }
 
+    /**
+     * After each action of the user
+     * Check if the input is valid
+     * if is valid -> Enable the button to be registered
+     */
     override fun onUserInteraction() {
         super.onUserInteraction()
         loginViewModel = LoginViewModel()
@@ -76,6 +82,9 @@ class RegisterActivity : AppCompatActivity() {
         loginViewModel.registerDataChanged(dataForm)
     }
 
+    /**
+     * Send post request to be registered
+     */
     private fun createAccount() {
         val queue = Volley.newRequestQueue(this)
         val url = "http://test.api.catering.bluecodegames.com/user/register"

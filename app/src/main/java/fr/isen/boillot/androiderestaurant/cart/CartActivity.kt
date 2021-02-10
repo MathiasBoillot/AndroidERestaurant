@@ -61,6 +61,9 @@ class CartActivity : BaseActivity() {
         }
     }
 
+    /**
+     * Delete item from the json or reduce the quantity
+     */
     private fun deleteItem(order: Order) {
         val file = File(cacheDir.absolutePath + "/$FILE_ORDER")
         file.exists().let {
@@ -79,6 +82,9 @@ class CartActivity : BaseActivity() {
     }
 
 
+    /**
+     * Add cart element in the User preferences
+     */
     private fun cartItem(orders: OrderList) {
         val count = orders.order.sumOf { it.quantity }
         val sharedPreference = getSharedPreferences(FILE_PREF, MODE_PRIVATE)
@@ -87,6 +93,11 @@ class CartActivity : BaseActivity() {
         }.apply()
     }
 
+    /**
+     * Make an order to the server
+     * Can be improve to be more modular
+     *
+     */
     private fun orderPost(sharedPreferences: SharedPreferences, orderList: OrderList, file: File) {
         val queue = Volley.newRequestQueue(this)
         val url = "http://test.api.catering.bluecodegames.com/user/order"
@@ -102,6 +113,7 @@ class CartActivity : BaseActivity() {
             binding.orderLoader.isVisible = false
             binding.recyclerViewCart.isVisible = true
 
+            // Can be remove or put to 0
             sharedPreferences.edit().apply {
                 putInt(BASKET_COUNTER, 0)
             }.apply()
@@ -109,6 +121,7 @@ class CartActivity : BaseActivity() {
             val intent = Intent(this, SuccessOrderActivity::class.java)
             intent.putExtra("price_paid", orderList.totalPriceOrder())
 
+            // Delete Json file after order made
             file.delete()
             binding.recyclerViewCart.adapter?.notifyDataSetChanged()
             invalidateOptionsMenu()
@@ -121,13 +134,11 @@ class CartActivity : BaseActivity() {
                 "Restaurant temporairement fermé, veuillez réessayez plus tard",
                 Toast.LENGTH_LONG).show()
 
+            // redirect to ErrorActivity if fail
             startActivity(Intent(this, ErrorOrderActivity::class.java))
-
         }
         queue.add(request)
     }
-
-
 
 
 }

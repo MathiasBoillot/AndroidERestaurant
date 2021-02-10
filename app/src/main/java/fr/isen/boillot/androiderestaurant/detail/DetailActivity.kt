@@ -34,12 +34,14 @@ class DetailActivity : BaseActivity() {
 
         calculTotal(quantity, item)
 
+        // Handle button "MORE"
         binding.moreDetail.setOnClickListener {
             quantity++
             binding.quantityDetail.text = quantity.toString()
             calculTotal(quantity, item)
         }
 
+        // Handle button "LESS"
         binding.lessDetail.setOnClickListener {
             if (quantity > 0)
                 quantity--
@@ -47,12 +49,17 @@ class DetailActivity : BaseActivity() {
             calculTotal(quantity, item)
         }
 
+        // Handle button "ADD"
         binding.addCart.setOnClickListener {
             createOrUpdateFile(item, quantity)
         }
     }
 
 
+    /**
+     * Function to create / update file json
+     * this json file contains an order of an user
+     */
     private fun createOrUpdateFile(item: Item, quantity: Int) {
 
         val file = File(cacheDir.absolutePath + "/$FILE_ORDER")
@@ -79,9 +86,11 @@ class DetailActivity : BaseActivity() {
         }.apply()
         Snackbar.make(binding.root, "Ajouté au panier", Snackbar.LENGTH_LONG).show()
         invalidateOptionsMenu()
-
     }
 
+    /**
+     * Calcul the total of the basket
+     */
     private fun calculTotal(quantity: Int, item: Item) {
         val total = quantity * item.getPrice()
         "Total : $total".also { binding.totalDetail.text = it }

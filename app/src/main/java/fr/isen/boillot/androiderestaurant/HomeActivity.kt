@@ -33,17 +33,29 @@ class HomeActivity : BaseActivity() {
         }
     }
 
+    /**
+     * @param id to get the text of the button
+     * Start CategoryActivity depend on the button clicked
+     */
     private fun displayListPage(id: Button) {
         val intent = Intent(this, CategoryActivity::class.java)
         intent.putExtra(CATEGORY, id.text.toString())
         startActivity(intent)
     }
 
+
+    /**
+     * Log when HomeActivity is destroy
+     */
     override fun onDestroy() {
         super.onDestroy()
         Log.i("HomeActivity", "onDestroy Called")
     }
 
+
+    /**
+     * Override to invalid the options menu
+     */
     override fun onResume() {
         super.onResume()
         invalidateOptionsMenu()

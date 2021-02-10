@@ -18,6 +18,7 @@ class SuccessOrderActivity : AppCompatActivity() {
 
         val price = intent.getStringExtra("price_paid")
 
+        // After success order -> Back to home to wait our order
         binding.backHomeSuccess.setOnClickListener {
             startActivity(Intent(this, HomeActivity::class.java))
         }

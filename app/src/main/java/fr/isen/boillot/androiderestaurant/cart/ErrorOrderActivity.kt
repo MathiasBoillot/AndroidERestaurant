@@ -15,6 +15,7 @@ class ErrorOrderActivity : AppCompatActivity() {
         binding = ActivityErrorOrderBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // After error order -> Back to home to try again
         binding.backOrder.setOnClickListener {
             startActivity(Intent(this, CartActivity::class.java))
         }

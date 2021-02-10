@@ -7,7 +7,7 @@ data class Item(
     @SerializedName("name_fr") val name: String,
     @SerializedName("images") private val images: List<String>,
     @SerializedName("ingredients") val ingredients: List<Ingredient>,
-    @SerializedName("prices") private val prices: List<Price>
+    @SerializedName("prices") private val prices: List<Price>,
 ) : Serializable {
     fun getPrice() = prices[0].price.toDouble()
     fun getFormattedPrice() = prices[0].price + "€"

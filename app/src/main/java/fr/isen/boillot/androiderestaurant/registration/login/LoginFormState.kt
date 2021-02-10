@@ -12,5 +12,5 @@ data class LoginFormState(
     @SerializedName("lastNameError") val lastNameError: Int? = null,
     @SerializedName("addressError") val addressError: Int? = null,
     @SerializedName("passwordError") val passwordError: Int? = null,
-    @SerializedName("isDataValid") val isDataValid: Boolean = false
+    @SerializedName("isDataValid") val isDataValid: Boolean = false,
 ) : Serializable

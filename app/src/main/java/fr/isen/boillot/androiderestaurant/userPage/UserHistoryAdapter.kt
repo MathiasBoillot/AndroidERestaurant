@@ -27,7 +27,9 @@ class UserHistoryAdapter(private val data: List<Message>) :
     override fun onBindViewHolder(holder: HistoryHolder, position: Int) {
         var text = ""
         val orderCart = Gson().fromJson(data[position].message, OrderList::class.java) as OrderList
-        for(c in orderCart.order){
+
+        // For all the items in the order.. Add it to "text"
+        for (c in orderCart.order) {
             text += c.item.name + " x " + c.quantity
         }
         holder.title.text = text

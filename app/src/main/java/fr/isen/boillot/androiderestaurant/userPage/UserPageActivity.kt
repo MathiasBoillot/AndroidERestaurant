@@ -35,7 +35,8 @@ class UserPageActivity : AppCompatActivity() {
         sharedPreferences = getSharedPreferences(BaseActivity.FILE_PREF, Context.MODE_PRIVATE)
         val userId = sharedPreferences.getInt(ID, 0)
 
-        if( userId != 0) {
+        // if user is connected, try to get history orders
+        if (userId != 0) {
             checkPreviousOrders(userId)
             binding.logout.setOnClickListener {
                 sharedPreferences.edit().remove(ID).apply()
@@ -50,6 +51,13 @@ class UserPageActivity : AppCompatActivity() {
     }
 
 
+    /**
+     * if user is connected
+     *
+     * @param user_id
+     *
+     * with user_id, can get history of the orders
+     */
     private fun checkPreviousOrders(user_id: Int) {
         val postUrl = "http://test.api.catering.bluecodegames.com/listorders"
         val queue = Volley.newRequestQueue(this)

@@ -4,5 +4,5 @@ import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
 open class LoginResult(
-    @SerializedName("id") val id : Int
+    @SerializedName("id") val id: Int,
 ) : Serializable

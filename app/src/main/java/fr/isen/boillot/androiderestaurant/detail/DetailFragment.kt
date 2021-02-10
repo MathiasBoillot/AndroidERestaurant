@@ -15,7 +15,7 @@ class DetailFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View {
         // Inflate the layout for this fragment
         binding = FragmentDetailBinding.inflate(inflater, container, false)
@@ -25,7 +25,8 @@ class DetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-    arguments?.getString("URL").let {
+
+        arguments?.getString("URL").let {
             Picasso.get().load(it).placeholder(R.drawable.pick_go).into(binding.fragmentImage)
         }
     }

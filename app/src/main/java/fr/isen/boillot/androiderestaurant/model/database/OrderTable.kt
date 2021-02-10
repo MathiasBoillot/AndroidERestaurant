@@ -17,6 +17,4 @@ data class OrderTable(
 
     @ColumnInfo(name = "price")
     var price: String = "0",
-
-
 )

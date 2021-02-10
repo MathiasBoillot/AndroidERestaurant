@@ -15,7 +15,7 @@ import java.io.File
 class CartAdapter(
     private val orders: OrderList,
     private val context: Context,
-    private val deleteItemClickListener: (Order) -> Unit
+    private val deleteItemClickListener: (Order) -> Unit,
 ) : RecyclerView.Adapter<CartAdapter.CartHolder>() {
     class CartHolder(binding: ItemOrderCartBinding) : RecyclerView.ViewHolder(binding.root) {
         val itemName = binding.itemName
@@ -59,6 +59,9 @@ class CartAdapter(
 
     override fun getItemCount(): Int = orders.order.size
 
+    /**
+     * Delete item from cart depend on the position
+     */
     private fun deleteItem(position: Int) {
         val file = File(context.cacheDir.absolutePath + "/$FILE_ORDER")
 

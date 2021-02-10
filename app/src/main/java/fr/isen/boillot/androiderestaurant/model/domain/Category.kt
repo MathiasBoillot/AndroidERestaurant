@@ -7,5 +7,5 @@ data class Category(
     @SerializedName
         ("name_fr") val name: String,
     @SerializedName
-        ("items") val items: List<Item>
+        ("items") val items: List<Item>,
 ) : Serializable

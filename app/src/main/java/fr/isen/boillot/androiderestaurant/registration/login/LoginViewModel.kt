@@ -64,7 +64,7 @@ class LoginViewModel : ViewModel() {
 
     // A placeholder password validation check
     private fun isPasswordValid(password: String): Boolean {
-        val PASSWORD_PATTERN =  Regex("^" +
+        val PASSWORD_PATTERN = Regex("^" +
                 "(?=.*[0-9])" +         //at least 1 digit
                 "(?=.*[a-z])" +         //at least 1 lower case letter
                 "(?=.*[A-Z])" +         //at least 1 upper case letter

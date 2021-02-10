@@ -29,16 +29,23 @@ class SignInActivity : AppCompatActivity() {
         setContentView(binding.root)
         loginViewModel = LoginViewModel()
 
+        // Send post to sign in the app
         binding.loginBtn.setOnClickListener {
             signInAccount()
         }
 
+        // Switch to register activity if no account
         binding.registerSwitch.setOnClickListener {
             startActivity(Intent(this, RegisterActivity::class.java))
         }
 
     }
 
+    /**
+     * After each action of the user
+     * Check if the input is valid
+     * if is valid -> Enable the button to be connected
+     */
     override fun onUserInteraction() {
         super.onUserInteraction()
         loginViewModel = LoginViewModel()
@@ -59,6 +66,9 @@ class SignInActivity : AppCompatActivity() {
         loginViewModel.signInDataChanged(dataForm)
     }
 
+    /**
+     * Send post request to sign in
+     */
     private fun signInAccount() {
         val queue = Volley.newRequestQueue(this)
         val url = "http://test.api.catering.bluecodegames.com/user/login"
@@ -70,7 +80,7 @@ class SignInActivity : AppCompatActivity() {
 
         val request = JsonObjectRequest(Request.Method.POST, url, dataPost, {
             Log.d("response", it.toString())
-            val jsonResult : UserResult = Gson().fromJson(
+            val jsonResult: UserResult = Gson().fromJson(
                 it.toString(),
                 UserResult::class.java
             )
@@ -79,8 +89,8 @@ class SignInActivity : AppCompatActivity() {
                 putInt(BaseActivity.ID, jsonResult.data.id)
             }.apply()
             startActivity(Intent(this, CartActivity::class.java))
-        }) {
-                error -> error.printStackTrace()
+        }) { error ->
+            error.printStackTrace()
         }
         queue.add(request)
     }

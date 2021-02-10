@@ -10,11 +10,12 @@ import fr.isen.boillot.androiderestaurant.model.domain.Item
 
 class RecyclerAdapter(
     private val categories: List<Item>,
-    private val categoriesClickListener: (Item) -> Unit
+    private val categoriesClickListener: (Item) -> Unit,
 ) :
     RecyclerView.Adapter<RecyclerAdapter.CategoryHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryHolder {
-        val itemBinding = ItemDishCategoryBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val itemBinding =
+            ItemDishCategoryBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return CategoryHolder(itemBinding)
     }
 

@@ -39,6 +39,8 @@ class CategoryActivity : BaseActivity() {
         messageTextView.text = "Notre carte"
 
         swipeRefreshLayout = binding.swipeRefresh
+
+        // Handle action refresh
         swipeRefreshLayout.setOnRefreshListener {
             resetCache()
             getItems(category)
@@ -47,6 +49,14 @@ class CategoryActivity : BaseActivity() {
 
     }
 
+    /**
+     * Function to get dishes depend on category
+     * First time -> Send request to get the dishes
+     * Next time -> Load dishes from cache
+     * Can pull to refresh dishes
+     *
+     * @param category
+     */
     private fun getItems(category: String?) {
 
         getCache()?.let {
@@ -64,7 +74,6 @@ class CategoryActivity : BaseActivity() {
                 e.printStackTrace()
             }
 
-
             val stringRequest = JsonObjectRequest(Request.Method.POST, url, params,
                 { it ->
                     swipeRefreshLayout.isRefreshing = false
@@ -81,6 +90,9 @@ class CategoryActivity : BaseActivity() {
     }
 
 
+    /**
+     * Create the cache if is not exists
+     */
     private fun setCache(res: String) {
         val sharedPreferences = getSharedPreferences(FILE_PREF, MODE_PRIVATE)
         sharedPreferences.edit().apply {
@@ -88,11 +100,18 @@ class CategoryActivity : BaseActivity() {
         }.apply()
     }
 
+    /**
+     * Get informations from the cache to avoid to ask the server again
+     */
     private fun getCache(): String? {
         val sharedPreferences = getSharedPreferences(FILE_PREF, MODE_PRIVATE)
         return sharedPreferences.getString(CACHE_CATEGORY, null)
     }
 
+
+    /**
+     * On pull to refresh -> Cache is deleted
+     */
     private fun resetCache() {
         val sharedPreferences = getSharedPreferences(FILE_PREF, MODE_PRIVATE)
         sharedPreferences.edit().apply {
@@ -100,12 +119,18 @@ class CategoryActivity : BaseActivity() {
         }.apply()
     }
 
+    /**
+     * Parse the cache to display the content of it
+     */
     private fun parseResult(res: String, selectedItem: String?) {
         val menuResult = GsonBuilder().create().fromJson(res, DataResult::class.java)
         val items = menuResult.data.firstOrNull { it.name == selectedItem }
         loadList(items?.items)
     }
 
+    /**
+     * Display the dishes on a new activity ( DetailActivity)
+     */
     private fun loadList(items: List<Item>?) {
         binding.categoryLoader.isVisible = false
         swipeRefreshLayout.isRefreshing = false

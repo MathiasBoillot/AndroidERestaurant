@@ -19,6 +19,8 @@ This application was created for a small seaside restaurant.
 * Updated order list
 * Pull to refresh dishes
 * Cache system for dishes
+* Order serialize and save
+* User preferences save
 * Handling response basket order
 * Prepared for a real database with Room 
 * Users can see their history
