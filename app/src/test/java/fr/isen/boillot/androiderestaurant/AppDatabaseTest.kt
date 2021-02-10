@@ -47,10 +47,10 @@ class AppDatabaseTest {
 
     @Test
     @Throws(Exception::class)
-    fun insertAndGetNight() {
-        val night = OrderTable(quantity = 1, price = "11", title = "Salade César")
-        orderDao.insert(night)
-        val tonight = orderDao.getOrders()
-        assertEquals(tonight?.quantity, 1)
+    fun insertAndGetAllOrders() {
+        val order = OrderTable(quantity = 1, price = "11", title = "Salade César")
+        orderDao.insert(order)
+        val allOrders = orderDao.getOrders()
+        assertEquals(allOrders?.quantity, 1)
     }
 }
