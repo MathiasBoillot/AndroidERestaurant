@@ -7,7 +7,7 @@ This application was created for a small seaside restaurant.
 ## How to install 
 
 
-* Download the [APK Ô Ptit Monde](https://github.com/MathiasBoillot/AndroidERestaurant/blob/master/app/release/)
+* Download the [APK Ô Ptit Monde](https://github.com/MathiasBoillot/AndroidERestaurant/releases/tag/1.0)
 * Install it on your phone
 * Make your order to eat your best meal 
 
