@@ -4,10 +4,12 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.Observer
 import com.android.volley.Request
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
+import com.google.android.material.snackbar.Snackbar
 import com.google.gson.Gson
 import fr.isen.boillot.androiderestaurant.BaseActivity
 import fr.isen.boillot.androiderestaurant.cart.CartActivity
@@ -90,7 +92,8 @@ class SignInActivity : AppCompatActivity() {
             }.apply()
             startActivity(Intent(this, CartActivity::class.java))
         }) { error ->
-            error.printStackTrace()
+            Snackbar.make(binding.root, "Email ou mot de passe incorrect", Snackbar.LENGTH_LONG).show()
+            startActivity(Intent(this, SignInActivity::class.java))
         }
         queue.add(request)
     }

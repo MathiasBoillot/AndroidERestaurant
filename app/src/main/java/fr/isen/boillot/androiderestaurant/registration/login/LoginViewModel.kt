@@ -39,9 +39,6 @@ class LoginViewModel : ViewModel() {
         return if (!isEmailValid(dataForm.email)) {
             _loginForm.value = LoginFormState(emailError = R.string.invalid_email)
             false
-        } else if (!isPasswordValid(dataForm.password)) {
-            _loginForm.value = LoginFormState(passwordError = R.string.invalid_password)
-            false
         } else {
             _loginForm.value = LoginFormState(isDataValid = true)
             true
