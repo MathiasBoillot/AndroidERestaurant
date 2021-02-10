@@ -27,7 +27,7 @@ class DetailFragment : Fragment() {
 
 
         arguments?.getString("URL").let {
-            Picasso.get().load(it).placeholder(R.drawable.pick_go).into(binding.fragmentImage)
+            Picasso.get().load(it).placeholder(R.drawable.pick_go_orange).into(binding.fragmentImage)
         }
     }
 

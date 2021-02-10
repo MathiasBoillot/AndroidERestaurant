@@ -30,7 +30,7 @@ class UserHistoryAdapter(private val data: List<Message>) :
 
         // For all the items in the order.. Add it to "text"
         for (c in orderCart.order) {
-            text += c.item.name + " x " + c.quantity
+            text += c.item.name + " x " + c.quantity + "\n"
         }
         holder.title.text = text
     }
